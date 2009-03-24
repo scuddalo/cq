@@ -62,11 +62,11 @@ class AccountsController < ApplicationController
   end
   
   def remember_me!
-    self.user.remember_me
-        }
-      :expires => self.user.remember_token_expires_at
-      :value => self.user.remember_token,
-cookies[:auth_token] = {
+      self.user.remember_me
+      cookies[:auth_token] = {
+        :value => self.user.remember_token,
+        :expires => self.user.remember_token_expires_at
+      }
   end
   
   def redirect_back_or_default(default)
