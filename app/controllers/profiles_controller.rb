@@ -20,6 +20,8 @@ class ProfilesController < ApplicationController
   def edit
   end
 
+
+
   # POST only
   def update
     logger.info ("***************** I am in profile_controller.update")

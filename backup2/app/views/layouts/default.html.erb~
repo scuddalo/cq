@@ -1,0 +1,40 @@
+<%
+	@title = yield(:title)
+	@title = "Who's Around?" if @title.blank?
+	@section = yield :nav_section || ''
+-%>
+
+<html>
+	<head>
+		<title>Seek You ~ <%= @title %></title>
+		<%= stylesheet_link_tag 'reset', :media => 'all' %>
+		<%= stylesheet_link_tag 'typography', :media => 'screen' %>
+		<%= stylesheet_link_tag 'layout', :media => 'all' %>
+		<%= stylesheet_link_tag 'navbar', :media => 'screen' %>
+		<%= stylesheet_link_tag 'sidebar', :media => 'screen' %>
+		<%= stylesheet_link_tag 'form', :media => 'screen' %>
+		<%= stylesheet_link_tag 'list', :media => 'screen' %>
+		<%= stylesheet_link_tag 'table', :media => 'screen' %>
+		<%= stylesheet_link_tag 'color', :media => 'screen' %>
+		<%= stylesheet_link_tag 'browser', :media => 'screen' %>
+		<%= stylesheet_link_tag('debug', :media => 'all') if development? && false %>
+	</head>
+	
+	<body class="<%= @section %>">
+		<div id='wrapper'>
+			
+			<div id='header'><%= render :partial => '/include/header' -%></div>
+			<div id='main'><%= render :partial => '/include/search' -%></div>
+			<div id='main'>
+				<%= render :partial => '/include/sidebar' -%>
+				<div id='content'>
+					<%= render_flash %>
+					<%= yield -%>
+				</div>
+				<div class='baseline'>&nbsp;</div>
+			</div>
+			<div id='navbar'><%= render :partial => '/include/navbar' -%></div>
+			<div id='footer'><%= render :partial => '/include/footer' -%></div>
+		</div>
+	</body>
+</html>

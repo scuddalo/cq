@@ -1,0 +1,16 @@
+<h1>Add Friends in this group members</h1>
+
+	<% form_tag :controller => :groups, :action => :create_group_members, :id => @group.id do |f|%>    
+		<% for member in @group_members %>
+		  <div>
+		    <%= check_box_tag 'friendship[friendship_ids][]', member.id, nil ,:disabled => GroupMember.exists?(:group_id => @group.id, :friendship_id => member.id) -%> - <%=h User.find(member.followee_id).login -%>
+				
+		  </div>
+		<% end %>
+		<br/>
+		<%= "Empty group!" if @group_members.empty? %>
+		<br/>
+		<%= submit_tag 'Save' %>
+  <% end -%>
+
+<%= link_to 'Back', groups_path %>

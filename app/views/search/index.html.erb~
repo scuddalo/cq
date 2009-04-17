@@ -1,0 +1,11 @@
+<% title 'Search Profile' -%>
+
+<% form_tag :action => :result, :method => :post, :class => 'horizontal section' do -%>
+	<fieldset>
+		<legend>Search user profile</legend>
+		<%= text_field_tag :search_profile, nil, :class => 'text' %>
+		<%= submit_tag 'Submit', :class => 'submit button' %>
+	</fieldset>
+	
+	
+<% end %>

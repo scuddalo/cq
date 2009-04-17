@@ -1,0 +1,75 @@
+body {
+	font-size: 62.5%;
+	text-align: center;
+}
+
+div#wrapper {
+	clear: both;
+	margin: 2em auto;
+	width: 88em;
+}
+
+div#header, div#content, div#sidebar, div#navbar, div#footer {
+	font-size: 1.6em;
+	padding: 1em;
+}
+
+div#header {
+	border: 2px solid black;
+	border-bottom: 0;
+	text-align: left;
+}
+
+div#header .logo, div#header h1 {
+	vertical-align: middle;
+}
+
+div#main {
+	border: 2px solid black;
+	border-top: 0;
+	border-bottom: 0;
+}
+
+div#main div.baseline {
+	clear: both;
+}
+
+div#content {
+	min-height: 14em;
+	padding-right: 14em;
+	text-align: left;
+}
+
+div#content .section + .section {
+	margin-top: 2.5em;
+}
+
+div#content .section.header + .section, div#content .section.label + .section {
+	margin-top: .5em;
+}
+
+div#content p.section + p.section {
+	text-indent: 5em;
+}
+
+div#footer {
+	clear: both;
+}
+
+div.flash.error {
+	color: red;
+}
+
+div.flash.warning {
+	color: orange;
+}
+
+fieldset {
+	border: 1px solid black;
+	margin: 1em;
+	padding: 1em;	
+}
+
+h2 {
+	margin-top: 1em;
+}

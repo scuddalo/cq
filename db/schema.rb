@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080526223738) do
+ActiveRecord::Schema.define(:version => 20090413070307) do
 
   create_table "favorite_locations", :force => true do |t|
     t.integer  "location_id"
@@ -34,6 +34,20 @@ ActiveRecord::Schema.define(:version => 20080526223738) do
 
   add_index "friendships", ["followee_id", "follower_id"], :name => "index_friendships_on_followee_id_and_follower_id", :unique => true
   add_index "friendships", ["follower_id", "followee_id"], :name => "index_friendships_on_follower_id_and_followee_id", :unique => true
+
+  create_table "group_members", :force => true do |t|
+    t.integer  "group_id"
+    t.integer  "friendship_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groups", :force => true do |t|
+    t.string   "name",       :limit => 40
+    t.integer  "owner_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "locations", :force => true do |t|
     t.string   "address"

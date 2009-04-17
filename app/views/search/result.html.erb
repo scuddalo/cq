@@ -1,0 +1,31 @@
+         <html>
+           <head>
+             <title>Search results</title>
+           </head>
+           <body>
+             <h3>Search results</h3>
+		
+		<table>
+
+		<tr><th>Name</th></tr>
+		
+		
+		<hr>
+		    <% if @results.empty? %>
+		        <tr><td >No result found!!!</td></tr>
+		    <% else %>
+		     
+			    <% for result in @results %>
+			    <tr><td ><%= result.login %></td></tr>
+			    
+			    <% end %>
+		     
+		    <% end %>
+		</table>
+
+
+           </body>
+         </html>
+
+
+

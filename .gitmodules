@@ -1,0 +1,21 @@
+[submodule "vendor/rails"]
+	path = vendor/rails
+	url = git://github.com/rails/rails.git
+[submodule "vendor/plugins/geokit-rails"]
+	path = vendor/plugins/geokit-rails
+	url = git://github.com/andre/geokit-rails.git
+[submodule "vendor/plugins/grammar"]
+	path = vendor/plugins/grammar
+	url = git://github.com/gcnovus/grammar.git
+[submodule "vendor/plugins/sms-fu"]
+	path = vendor/plugins/sms-fu
+	url = git://github.com/brendanlim/sms-fu.git
+[submodule "vendor/plugins/shoulda"]
+	path = vendor/plugins/shoulda
+	url = git://github.com/thoughtbot/shoulda.git
+[submodule "vendor/plugins/ruby-tidbits"]
+	path = vendor/plugins/ruby-tidbits
+	url = git://github.com/gcnovus/ruby-tidbits.git
+[submodule "vendor/plugins/avatar"]
+	path = vendor/plugins/avatar
+	url = git://github.com/gcnovus/avatar.git

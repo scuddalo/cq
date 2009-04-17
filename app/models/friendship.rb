@@ -40,6 +40,7 @@ class Friendship < ActiveRecord::Base
                         :conditions => 'friendships.follower_id = F2.followee_id',
                         :readonly => true
   
+	has_many :group_members
   belongs_to :follower, :class_name => 'Profile'
   belongs_to :followee, :class_name => 'Profile'
   

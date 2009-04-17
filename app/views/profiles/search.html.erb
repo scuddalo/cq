@@ -1,0 +1,10 @@
+<h1>hello</h1>
+<% title 'Search Profile' -%>
+
+<form_tag profile_search_results_path, :method => :put, :class => 'horizontal section' do -%>
+	<fieldset>
+		<%= f.text_field :search_name, :class => 'text' %>
+	</fieldset>
+	
+	<%= submit_tag 'Submit changes', :class => 'submit button' %>
+<end>

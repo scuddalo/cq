@@ -1,0 +1,35 @@
+div#sidebar {
+	float: right;
+	font-size: 1.4em;
+	margin-right: 1em;
+	text-align: left;
+	width: 12.5em;
+}
+
+div#sidebar div.widget h3 {
+	border-bottom: 1px solid black;
+	font-size: 1.2em;
+	letter-spacing: 1px;
+	margin-bottom: .5em;
+	padding-bottom: .1em;
+}
+
+div#sidebar div.widget + div.widget {
+	margin-top: 1.5em;
+}
+
+div#sidebar li {
+	display: block;
+}
+
+div#sidebar li + li {
+	margin-top: .5em;
+}
+
+div#sidebar a {
+	text-decoration: none;
+}
+
+div#sidebar a:hover, div#sidebar a:focus {
+	text-decoration: underline;
+}

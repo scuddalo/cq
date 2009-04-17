@@ -1,0 +1,11 @@
+    def search
+       if params[:query]
+          user_collection = User.search(params[:profile])
+       else
+           user_collection = []
+       end
+     
+       @user_pages, @users = paginate_collection user_collection, :page => params[:page]
+    end 
+
+

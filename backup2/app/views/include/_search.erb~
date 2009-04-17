@@ -1,0 +1,6 @@
+    <form action='/people/search' method='post'>
+    <input name="query" type="text" />
+    <input type='submit' value='Search' />
+    </form>
+
+

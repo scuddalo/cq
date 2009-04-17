@@ -9,6 +9,7 @@ class Profile < ActiveRecord::Base
   belongs_to :user
   
   has_many :favorite_locations, :class_name => 'Location::Favorite'
+	has_many :groups, :class_name => 'Group', :foreign_key => 'owner_id'
   
   #validates_presence_of :email
   #validates_email :message => 'is not a valid email address', :allow_blank => true

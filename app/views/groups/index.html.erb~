@@ -1,0 +1,15 @@
+<h1>Listing groups</h1>
+
+	<div>
+    <span><%= link_to group.name, group_members_group_path(group) %></span>
+  </div>
+<% for group in @groups %>
+  <div>
+    <span><%= link_to group.name, group_members_group_path(group) %></span>
+  </div>
+<% end %>
+
+
+<br />
+
+<%= link_to 'New group', new_group_path %>

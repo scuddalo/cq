@@ -1,0 +1,20 @@
+== Welcome to Pinball
+
+Project Pinball is...
+
+== Getting Started
+
+1. cp config/database.yml{.template,}
+
+== Tips for developers
+
+=== Using Git Submodules
+  rm -rf vendor/rails
+  git submodule add git://github.com/rails/rails.git vendor/rails
+  git submodule init
+  git submodule update
+
+=== Errors
+
+	"SQLite3::SQLException: SQL logic error or missing database"
+	Try rake db:fixtures:load

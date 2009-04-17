@@ -1,0 +1,18 @@
+<h1>Listing group members</h1>
+
+<% for member in @group_members %>
+  <div>
+    <span>
+		<% if params[:group_id] == 'default' %>
+			<%=h User.find(member.followee_id).login %>
+		<%else%>
+			<%=h User.find(Friendship.find(member.friendship_id).followee_id).login %> | 
+			<%= link_to 'Remove Freinds', :controller => :groups, :action => :remove_friends_in_group, :member_id => member.id, :html => {:method => :post} %>
+		<%end%>
+		</span>
+  </div>
+<% end %>
+<br/>
+<%= "Empty group!" if @group_members.empty? %>
+<br/>
+<%= link_to 'Back', groups_path %> | <%= link_to 'Add Freinds', :controller => :groups, :action => :add_friends_in_group, :id => @group %>

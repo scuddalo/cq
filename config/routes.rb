@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :groups ,:member => {:group_members => :get,:add_friends_in_group => :get,:create_group_members => :post,:remove_friends_in_group => :get}
+
   
   # The following methods can be used in block form, like so:
   #   map.html_or_api do |m|
@@ -22,7 +24,17 @@ ActionController::Routing::Routes.draw do |map|
     m.help_index  'docs.:format', :action => 'index'
     m.document    'docs/:page.:format', :action => 'page'
   end
-  
+
+
+map.connect "search/",:controller => "search",:action     => "index"
+map.connect "search/result",:controller => "search",:action     => "result"
+
+map.connect "group/",:controller => "group",:action     => "index"
+
+
+ 
+
+
   map.with_options(:controller => 'accounts') do |m|
     m.get do |n|
       n.login_form 'accounts/login.:format', :action => 'login'
@@ -45,6 +57,8 @@ ActionController::Routing::Routes.draw do |map|
       n.getting_started 'people/:profile_id/getting_started.:format', :action => 'getting_started'
       n.edit_profile 'people/:profile_id/edit.:format', :action => 'edit'
       n.refer_a_friend 'refer_a_friend.:format', :action => 'refer_a_friend_form'
+      ##n.profile_search 'people/search.:format', :action => 'search'
+      ##n.profile_search_results 'people/search/results.:format', :action => 'find_profile'
     end
     
     m.post do |n|

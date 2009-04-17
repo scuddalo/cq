@@ -1,0 +1,15 @@
+<p class='section'>
+  People 
+  <% if requested_profile.location.kind_of?(Location::Airport) -%>
+	  in
+  <% else -%>
+	  near
+  <% end -%>
+  <%= requested_profile.location -%>:
+</p>
+
+<ul class='section'>
+	<% whos_around.each do |p| -%>
+	<li><%= link_to p, profile_path(:profile_id => p) -%></li>
+	<% end -%>
+</ul>

@@ -1,0 +1,2 @@
+class GroupFriendship < ActiveRecord::Base
+end
