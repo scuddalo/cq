@@ -1,0 +1,28 @@
+<p>
+  <b>From profile:</b>
+  <%=h @message.from_profile_id %>
+</p>
+
+<p>
+  <b>To profile:</b>
+  <%=h @message.to_profile_id %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%=h @message.content %>
+</p>
+
+<p>
+  <b>Read:</b>
+  <%=h @message.read %>
+</p>
+
+<p>
+  <b>Is accepted:</b>
+  <%=h @message.is_accepted %>
+</p>
+
+
+<%= link_to 'Edit', edit_message_path(@message) %> |
+<%= link_to 'Back', messages_path %>
