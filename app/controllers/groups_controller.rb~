@@ -115,7 +115,7 @@ class GroupsController < ApplicationController
 
 	def remove_friends_in_group
 		@group = Group.find(params[:group_id])
-		GroupMember.destroy(params[:member_id] => i)
+		GroupMember.destroy(params[:member_id])
 		redirect_to :action => :group_members, :id => @group
 	end
 

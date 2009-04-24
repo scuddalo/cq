@@ -1,11 +1,17 @@
 <h1>Listing groups</h1>
 
 	<div>
-    <span><%= link_to group.name, group_members_group_path(group) %></span>
+    <span>
+			<%= link_to 'default', group_members_group_path('default') %> | 
+			<%= link_to 'Send messages', send_message_to_group_message_path('default') %>
+		</span>
   </div>
 <% for group in @groups %>
   <div>
-    <span><%= link_to group.name, group_members_group_path(group) %></span>
+    <span>
+			<%= link_to group.name, group_members_group_path(group) %> | 
+			<%= link_to 'Send messages', send_message_to_group_message_path(group.id) %>
+		</span>
   </div>
 <% end %>
 

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090413070307) do
+ActiveRecord::Schema.define(:version => 20090421135731) do
 
   create_table "favorite_locations", :force => true do |t|
     t.integer  "location_id"
@@ -54,6 +54,16 @@ ActiveRecord::Schema.define(:version => 20090413070307) do
     t.string   "location_type"
     t.decimal  "latitude",      :precision => 11, :scale => 9
     t.decimal  "longitude",     :precision => 12, :scale => 9
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "messages", :force => true do |t|
+    t.integer  "from_profile_id"
+    t.integer  "to_profile_id"
+    t.text     "content"
+    t.boolean  "read",            :default => false
+    t.boolean  "is_accepted"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

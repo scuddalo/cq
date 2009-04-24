@@ -4,10 +4,12 @@
   <div>
     <span>
 		<% if params[:group_id] == 'default' %>
-			<%=h User.find(member.followee_id).login %>
+			<%=h User.find(member.followee_id).login %> | 
+			<%= link_to 'Send message', send_message_message_path(User.find(member.followee_id).profile.id) %>
 		<%else%>
 			<%=h User.find(Friendship.find(member.friendship_id).followee_id).login %> | 
-			<%= link_to 'Remove Freinds', :controller => :groups, :action => :remove_friends_in_group, :member_id => member.id, :html => {:method => :post} %>
+			<%= link_to 'Send message', send_message_message_path(User.find(Friendship.find(member.friendship_id).followee_id).profile.id) %> | 
+			<%= link_to 'Remove Freinds', :controller => :groups, :action => :remove_friends_in_group, :member_id => member.id %>
 		<%end%>
 		</span>
   </div>

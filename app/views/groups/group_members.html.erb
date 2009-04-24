@@ -4,9 +4,11 @@
   <div>
     <span>
 		<% if params[:group_id] == 'default' %>
-			<%=h User.find(member.followee_id).login %>
+			<%=h User.find(member.followee_id).login %> | 
+			<%= link_to 'Send message', send_message_message_path(User.find(member.followee_id).profile.id) %>
 		<%else%>
 			<%=h User.find(Friendship.find(member.friendship_id).followee_id).login %> | 
+			<%= link_to 'Send message', send_message_message_path(User.find(Friendship.find(member.friendship_id).followee_id).profile.id) %> | 
 			<%= link_to 'Remove Freinds', :controller => :groups, :action => :remove_friends_in_group, :member_id => member.id %>
 		<%end%>
 		</span>
@@ -15,4 +17,4 @@
 <br/>
 <%= "Empty group!" if @group_members.empty? %>
 <br/>
-<%= link_to 'Back', groups_path %> | <%= link_to 'Add Freinds', :controller => :groups, :action => :add_friends_in_group, :id => @group %>
+<%= link_to 'Back', groups_path %> | <%= link_to 'Add Freinds', :controller => :groups, :action => :add_friends_in_group, :id => @group unless params[:group_id] == 'default'%>
