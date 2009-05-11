@@ -10,6 +10,6 @@
 
 <ul class='section'>
 	<% whos_around.each do |p| -%>
-	<li><%= link_to p, profile_path(:profile_id => p) -%></li>
+	<li><%= link_to p, profile_path(:profile_id => p) -%> - <i><%= h p.status -%>...</i> </li>
 	<% end -%>
 </ul>

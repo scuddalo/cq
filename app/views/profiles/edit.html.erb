@@ -5,7 +5,8 @@
 	<fieldset>
 		<%= f.text_field :email, :class => 'text' %>
 		<%= f.text_field :display_name, :class => 'text' %>
-		<%= f.text_field :cell_number, :class => 'text' %>
+		<%= f.text_field :status, :class => 'text' %>
+		<%= f.text_field :cell_number, :class => 'text' %>		
 		<%= f.select :cell_carrier, CellPhone::Carrier::CARRIERS, { :include_blank => true, :selected => requested_profile.cell_carrier.to_param }, { :class => 'select' } %>
 	</fieldset>
 	

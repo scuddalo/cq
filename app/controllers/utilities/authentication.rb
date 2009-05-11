@@ -43,7 +43,7 @@ module Utilities
         end
     
         def login_from_http_basic_auth
-          username, password = get_auth_data
+          username, passwd = get_auth_data
           self.current_user ||= (User.authenticate(username, passwd) || :false) if username && passwd
         end
     

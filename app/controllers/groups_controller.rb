@@ -90,6 +90,11 @@ class GroupsController < ApplicationController
   def group_members
 		if params[:group_id] == 'default'
 			@group_members = Friendship.find_all_by_follower_id(current_user.id)
+		## Added by Dev1	
+		respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => Friendship.find_all_by_follower_id(current_user.id) }
+    end
 		else
 	    @group = Group.find(params[:group_id])
 			@group_members = @group.group_members

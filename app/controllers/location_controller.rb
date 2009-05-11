@@ -37,6 +37,10 @@ class LocationController < ApplicationController
       redirect_to :action => 'edit'
     else
       @whos_around = requested_profile.find_nearby(:include_self => false)
+			respond_to do |format|
+	      format.html # new.html.erb
+	      format.xml  { render :xml => requested_profile.find_nearby(:include_self => false).to_xml }
+	    end
     end
   end
   

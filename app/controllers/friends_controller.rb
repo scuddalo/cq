@@ -9,19 +9,38 @@ class FriendsController < ApplicationController
   
   helper_method :requested_tier
   
+
+  
+
   # GET only
   def followers
+#@groups = Group.find(:all, :conditions => {:owner_id => params[:profile_id]})
+	respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => requested_profile.followers.to_xml }
+    end
   end
+
 
   # GET only
   # all followings
   def following
+	#@friendships = Friendship.find(:all, :conditions => {:follower_id => params[:profile_id]})
+	respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => requested_profile.followees.to_xml }
+    end
   end
   
   # GET only
   # followings in tier params[:tier]
   def following_by_tier
     raise ActiveRecord::RecordNotFound.new("Parameter tier must be one of [1, 2, 3]") unless (1..3).include?(requested_tier)
+
+	respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => by_tier = requested_profile.followees.by_tier(requested_tier).to_xml }
+    end
   end
 
   # POST only: add a following
