@@ -2,6 +2,8 @@ class LocationController < ApplicationController
 
   requires_profile :only => [ :current ]
   requires_is_self :except => [ :current ]
+	# The default radius for searches
+  define_once :DEFAULT_DISTANCE, 50
   
   # GET only
   def current
@@ -29,6 +31,25 @@ class LocationController < ApplicationController
       redirect_to :controller => 'profiles', :action => 'dashboard', :profile_id => current_user
     end
   end
+
+
+	def modify
+    requested_profile.location = params[:location]
+    requested_profile.location.latitude = params[:lat]
+		requested_profile.location.longitude = params[:long]
+    requested_profile.save!
+		
+    current_user.reload
+    flash[:notice] = "Updated your location to #{requested_profile.location}"
+    
+		if requested_profile.location
+      redirect_to :action => 'whos_around'
+    else
+      redirect_to :controller => 'profiles', :action => 'dashboard', :profile_id => current_user
+    end
+  end
+
+
 
   # GET only
   def whos_around

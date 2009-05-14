@@ -95,6 +95,12 @@ map.connect "group/",:controller => "group",:action     => "index"
       n.edit_location 'people/:profile_id/location/edit.:format', :action => 'edit'
     end
     
+		m.post do |n|
+      n.connect 'location.:format', :action => 'update'
+			n.connect 'location/location_modify.:format', :action => 'modify'
+    end
+
+
     m.put do |n|
       n.connect 'people/:profile_id/location.:format', :action => 'update'
     end
