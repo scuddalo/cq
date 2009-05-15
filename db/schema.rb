@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090421135731) do
+ActiveRecord::Schema.define(:version => 20090515141054) do
 
   create_table "favorite_locations", :force => true do |t|
     t.integer  "location_id"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20090421135731) do
     t.integer  "tier",        :default => 3
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "status"
   end
 
   add_index "friendships", ["followee_id", "follower_id"], :name => "index_friendships_on_followee_id_and_follower_id", :unique => true
@@ -45,6 +46,14 @@ ActiveRecord::Schema.define(:version => 20090421135731) do
   create_table "groups", :force => true do |t|
     t.string   "name",       :limit => 40
     t.integer  "owner_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "invitations", :force => true do |t|
+    t.integer  "from_profile_id"
+    t.integer  "to_profile_id"
+    t.boolean  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -69,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20090421135731) do
   end
 
   create_table "profiles", :force => true do |t|
+    t.text     "status"
     t.integer  "user_id"
     t.string   "display_name"
     t.text     "description"
@@ -79,8 +89,6 @@ ActiveRecord::Schema.define(:version => 20090421135731) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id"
 
   create_table "settings", :force => true do |t|
     t.integer  "profile_id"

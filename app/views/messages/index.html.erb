@@ -1,5 +1,5 @@
 <%= 'Inbox' %> | <%= link_to 'Sent', message_sent_messages_path %>
-<h1>Listing Inbox messages</h1>
+<h5>Listing Inbox messages</h5>
 
 <table>
   <tr>
@@ -20,6 +20,27 @@
   </tr>
 <% end %>
 </table>
+<br>
+<h5>New friend request</h5>
+<table cellspacing=3 cellpadding=3>
+  <tr>
+    <th>From </th>
+    <th>To</th>
+    <th>Subject</th>
+    <th>Accept/Reject</th>
+		<th>Date</th>
+  </tr>
+<% for invitation in @invitations %>
+  <tr>
+    <td><%=h User.find(invitation.from_profile_id).login %></td>
+<td><%=h User.find(invitation.to_profile_id).login %></td>
+<td><%= "One invitation"%></td>
+<td><%= link_to 'Accept', follow_path(:profile_id => invitation.to_profile_id, :follow_profile_id => invitation.from_profile_id), :method => :post -%> | <%= link_to 'Reject', unfollow_path(:profile_id => invitation.to_profile_id, :follow_profile_id => invitation.from_profile_id), :method => :post -%></td>
+        <td><%= invitation.created_at.to_s(:short) %></td>
+  </tr>
+<% end %>
+</table>
+
 
 <br />
 

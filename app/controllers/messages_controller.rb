@@ -3,6 +3,7 @@ class MessagesController < ApplicationController
   # GET /messages.xml
   def index
     @messages = Message.find(:all, :conditions => {:to_profile_id => current_user.profile.id})
+    @invitations = Invitation.find(:all, :conditions => {:to_profile_id => current_user.profile.id})
 
     respond_to do |format|
       format.html # index.html.erb
@@ -89,6 +90,16 @@ class MessagesController < ApplicationController
       format.html # new.html.erb
       format.xml  { render :xml => @message }
     end
+	end
+
+  def send_invitation
+      @message = Invitation.new
+      #@message.content = "<%= link_to 'Accept', follow_path(:profile_id => #{current_user.profile.id}, :follow_profile_id => #{params[:message_id]}), :method => :post -%> | <%= link_to 'Reject', unfollow_path(:profile_id => #{current_user.profile.id}, :follow_profile_id => #{params[:message_id]}), :method => :post -%>"
+			@message.from_profile_id = current_user.profile.id
+      @message.to_profile_id = params[:message_id]
+			@message.save
+     flash[:notice] = 'Invitation sent successfully.'
+    redirect_to whos_around_path(:profile_id => current_user.profile)
 	end
 
 	def send_message_to_group

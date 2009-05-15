@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :messages,:member => {:send_message => :get,:send_message_to_group => :get, :show_message => :post,:accept_message => :post,:reject_message => :post},
+  map.resources :messages,:member => {:send_message => :get,:send_invitation => :post,:send_message_to_group => :get, :show_message => :post,:accept_message => :post,:reject_message => :post},
 :collection => {:message_sent=> :get}
 
   map.resources :groups ,:member => {:group_members => :get,:add_friends_in_group => :get,:create_group_members => :post,:remove_friends_in_group => :get}
