@@ -34,6 +34,8 @@ ActionController::Routing::Routes.draw do |map|
 map.connect "search/",:controller => "search",:action     => "index"
 map.connect "search/result",:controller => "search",:action     => "result"
 
+map.connect "friends/follow",:controller => "friends",:action     => "follow"
+
 map.connect "group/",:controller => "group",:action     => "index"
 
 
@@ -83,6 +85,7 @@ map.connect "group/",:controller => "group",:action     => "index"
     end
     m.post do |n|
       n.follow 'people/:profile_id/follow.:format', :action => 'follow'
+			#n.connect 'friends.:format', :action => 'follow'
       n.unfollow 'people/:profile_id/unfollow.:format', :action => 'unfollow'
       n.move_to_tier 'people/:profile_id/move_to_tier.:format', :action => 'move_to_tier'
     end
