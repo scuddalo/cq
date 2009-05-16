@@ -26,6 +26,12 @@ class AccountsController < ApplicationController
     end
   end
 
+
+def user
+
+self.current_user = User.authenticate(params[:login], params[:password])
+end
+
   # POST only
   def password_signup
     params[:user] ||= {}
@@ -61,14 +67,23 @@ class AccountsController < ApplicationController
     end
   end
   
-  def remember_me!
-      self.user.remember_me
+  def remember_me
+      current_user.remember_me
       cookies[:auth_token] = {
         :value => self.user.remember_token,
         :expires => self.user.remember_token_expires_at
       }
   end
-  
+
+def remember_me!
+      self.user.remember_me!
+      cookies[:auth_token] = {
+        :value => self.user.remember_token,
+        :expires => self.user.remember_token_expires_at
+      }
+  end
+
+ 
   def redirect_back_or_default(default)
     redirect_to (return_to_after_login_location ? return_to_after_login_location : default)
     self.return_to_after_login_location = nil
