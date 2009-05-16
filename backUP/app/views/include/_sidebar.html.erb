@@ -1,9 +1,0 @@
-<% if sidebar_widgets.any? -%>
-<div id='sidebar'>
-  <% sidebar_widgets.each do |w| -%>
-    <div class='widget'>
-      <%= render :partial => "/include/#{w}_widget" -%>
-    </div>
-  <% end -%>
-</div>
-<% end -%>

@@ -1,1 +1,0 @@
-<form_tag profile_search_results_path, :method => :put, :class => 'horizontal section' do -%>
