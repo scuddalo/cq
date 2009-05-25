@@ -31,12 +31,10 @@ ActionController::Routing::Routes.draw do |map|
   end
 
 
-map.connect "search/",:controller => "search",:action     => "index"
-map.connect "search/result",:controller => "search",:action     => "result"
-
-map.connect "friends/follow",:controller => "friends",:action     => "follow"
-
-map.connect "group/",:controller => "group",:action     => "index"
+  map.connect "search/",:controller => "search",:action     => "index"
+  map.connect "search/result",:controller => "search",:action     => "result"
+  map.connect "friends/follow",:controller => "friends",:action     => "follow"
+  map.connect "group/",:controller => "group",:action     => "index"
 
 
  

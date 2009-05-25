@@ -4,6 +4,8 @@ with_grammatical_context(:subject => profile) do |gc|
 -%><%= gc.subject -%>
 <% if !profile -%>
 oops! location is not set!
+<% elsif not profile.location.nil? and profile.location.lat and profile.location.long %>
+<%= gc.conjugate('is') %> at <%= profile.location.lat %> and <%= profile.location.long %>
 <% elsif profile.location.blank? -%>
   <%= gc.conjugate('has') %> not set a
 location<% else -%>

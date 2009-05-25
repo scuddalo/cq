@@ -16,12 +16,19 @@ class AccountsController < ApplicationController
 
   # POST only
   def password_login
+    logger.info ("password_login user: #{params[:login]}")
     self.current_user = User.authenticate(params[:login], params[:password])
     if logged_in?
       remember_me! if params[:remember_me] == "1"
-      redirect_back_or_default :controller => 'profiles', :profile_id => current_user.profile.id, :action => 'dashboard'
+      
+      respond_to do |format|
+        format.html { redirect_back_or_default :controller => 'profiles', :profile_id => current_user.profile.id, :action => 'dashboard'}
+        format.xml { render :xml => self.current_user.to_xml(:include => {:profile => {:include => [:location] }})}
+      end
+
     else
       flash[:error] = "Uh-oh, login didn't work. Do you have caps locks on? Try it again."
+      logger.info ("loging didn't work.")
       redirect_to :action => 'login'
     end
   end

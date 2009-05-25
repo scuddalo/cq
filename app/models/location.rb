@@ -7,8 +7,8 @@ module Location
   define_once :NOWHERE_NEAR, Float::MAX
   
   # Creates a new Location::Parser and calls parse on it.
-  def self.parse(value, favorites = [])
-    Location::Parser.new.parse(value, favorites)
+  def self.parse(value, favorites = [], is_lat_and_long=false)
+    Location::Parser.new.parse(value, favorites, is_lat_and_long)
   end
   
 end

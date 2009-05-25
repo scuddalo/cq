@@ -4,7 +4,7 @@ module Location
     
     set_table_name 'locations'
     set_inheritance_column 'location_type'
-    validates_presence_of :address
+    #validates_presence_of :address
     validates_presence_of :location_type
     validates_inclusion_of :location_type, :in => ['Address', 'Airport'], :allow_blank => true
     
@@ -45,11 +45,13 @@ module Location
     end
     
     def to_s
-      address
+      address if address
+      "#{lat}, #{long}" if lat and long
     end
     
     def display_name
-      address
+      address if address
+      "#{lat}, #{long}" if lat and long
     end
     
     protected

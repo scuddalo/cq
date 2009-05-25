@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090515141054) do
+ActiveRecord::Schema.define(:version => 20090517144713) do
 
   create_table "favorite_locations", :force => true do |t|
     t.integer  "location_id"
@@ -78,7 +78,6 @@ ActiveRecord::Schema.define(:version => 20090515141054) do
   end
 
   create_table "profiles", :force => true do |t|
-    t.text     "status"
     t.integer  "user_id"
     t.string   "display_name"
     t.text     "description"
@@ -88,7 +87,10 @@ ActiveRecord::Schema.define(:version => 20090515141054) do
     t.integer  "location_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "status"
   end
+
+  add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id"
 
   create_table "settings", :force => true do |t|
     t.integer  "profile_id"

@@ -2,7 +2,10 @@
 <% nav_section 'whos_around' -%>
 
 <% form_tag location_path, :method => :put, :class => 'horizontal section' do -%>
+	<span>
 	<%= text_field_tag :location, params[:location] || requested_profile.location, :class => 'text focus' %>
+	<%= check_box_tag 'lat_and_long', 1, false, :class => 'checkbox' %>
+	</span>
 	<%= submit_tag 'Update your location', :class => 'button' %>	
 <% end -%>
 

@@ -22,7 +22,13 @@ module Location #:nodoc:
     # then tries geocoding it to a Location::Address.
     # If a value is returned, the value is guaranteed to
     # have been saved to the database.
-    def parse(value, favorites = [])
+    def parse(value, favorites = [], is_lat_and_long=false)
+      if is_lat_and_long
+        latAndLong = value.split(",")
+        address = parse_lat_and_long(latAndLong[0], latAndLong[1])
+        return address if address
+      end
+      
       return value if value.kind_of?(Location::Base)
       return nil if value.blank?
       
@@ -33,6 +39,10 @@ module Location #:nodoc:
       return airport if airport
       
       address = parse_address(value)
+      return address if address
+      
+      latAndLong = value.split(",")
+      address = parse_lat_and_long(latAndLong[0], latAndLong[1])
       return address if address
       
       raise ParseError.new(value)
@@ -47,6 +57,14 @@ module Location #:nodoc:
     
     def parse_favorite(value, favorites)
       favorites.to_a.find { |f| f === value }
+    end
+    
+    def parse_lat_and_long(lat, long)
+      existing_address = Location::Address.find(:first, :conditions => {:latitude => lat, :longitude => long})
+      return existing_address if existing_address
+      
+      new_address = Location::Address.new(:latitude=>lat, :longitude=>long)
+      return new_address if new_address.save!
     end
     
     def parse_airport(value)

@@ -32,6 +32,7 @@ module Location::Locatable
     #
     # Returns [] if +location+ is +nil+.
     def find_within(options = {})
+      debugger
       return [] if self.location.nil?
       include_self = (options.delete(:include_self) != false)
     

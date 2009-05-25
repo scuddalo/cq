@@ -9,7 +9,7 @@ class ProfilesController < ApplicationController
   end
   
   # GET only
-  def getting_started   
+  def getting_started
   end
 
   # GET only

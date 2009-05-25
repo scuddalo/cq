@@ -21,7 +21,12 @@ class LocationController < ApplicationController
 
   # POST only
   def update
-    requested_profile.location = params[:location]
+    if params[:lat_and_long] == "1"
+      requested_profile.location = Location::parse(params[:location], [], true)
+    else
+      requested_profile.location = params[:location]
+    end
+    requested_profile.location.save!
     requested_profile.save!
     current_user.reload
     flash[:notice] = "Updated your location to #{requested_profile.location}"
@@ -34,16 +39,24 @@ class LocationController < ApplicationController
 
 
 	def modify
-    requested_profile.location = params[:location]
-    requested_profile.location.latitude = params[:lat]
-		requested_profile.location.longitude = params[:long]
+	  debugger
+	  if params[:location]
+      requested_profile.location = params[:location]
+    elsif params[:lat] and params[:long]
+      requested_profile.location = Location::parse("#{params[:lat]},#{params[:long]}", [], true)
+  	else
+    end
+    requested_profile.location.save!
     requested_profile.save!
 		
     current_user.reload
     flash[:notice] = "Updated your location to #{requested_profile.location}"
     
 		if requested_profile.location
-      redirect_to :action => 'whos_around'
+      respond_to do |format|
+        format.html {redirect_to :action => 'whos_around'}
+        format.xml { render :xml => requested_profile.find_nearby(:include_self=>false).to_xml (:include => [:location, :user])}
+      end
     else
       redirect_to :controller => 'profiles', :action => 'dashboard', :profile_id => current_user
     end

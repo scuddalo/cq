@@ -12,7 +12,6 @@ module Utilities
   
       module ClassMethods
         def requires_profile(opts = {})
-          print "\n@@@@@@@@@@@ requires_profiles!!!"
           append_before_filter :require_profile!, opts
         end
       end
@@ -25,8 +24,6 @@ module Utilities
           safe_load :@profile, Profile, :profile_id, reload
         end
         def require_profile!
-          print "\n@@@@@@@@@@@"
-          print :profile_id
           require_exists! requested_profile, Profile, :profile_id
         end
     
@@ -45,7 +42,6 @@ module Utilities
         end
     
         def require_exists!(instance, klass, parameter_name)
-          print "\n@@@@@@@@@@@@@@@ #{instance}....#{klass}......#{parameter_name}"
           raise error_for(klass, parameter_name) if instance.nil?
           true
         end
