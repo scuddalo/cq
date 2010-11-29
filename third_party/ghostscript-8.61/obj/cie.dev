@@ -1,0 +1,3 @@
+-obj ./obj/zcie.o ./obj/zcrd.o
+-oper zcie_l2 zcrd_l2
+-include ./obj/cielib

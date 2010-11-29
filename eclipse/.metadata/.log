@@ -1,0 +1,79 @@
+!SESSION 2010-03-20 18:03:10.820 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.5.0_22
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86, WS=cocoa, NL=en_US
+Framework arguments:  -application com.aptana.ide.desktop.integration.Application -keyring /Users/santoash/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86 -application com.aptana.ide.desktop.integration.Application -keyring /Users/santoash/.eclipse_keyring -consoleLog -showlocation
+
+!ENTRY org.eclipse.ui.workbench 2 0 2010-03-20 18:03:17.113
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2010-03-20 18:03:17.114
+!MESSAGE Conflict for 'AUTOGEN:::org.rubypeople.rdt.refactoring.refactoringContext/org.rubypeople.rdt.refactoring.action.RenameAction':
+HandlerActivation(commandId=AUTOGEN:::org.rubypeople.rdt.refactoring.refactoringContext/org.rubypeople.rdt.refactoring.action.RenameAction,
+	handler=ActionDelegateHandlerProxy(null,org.rubypeople.rdt.refactoring.action.RenameAction),
+	expression=WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@20a25),sourcePriority=16384)
+HandlerActivation(commandId=AUTOGEN:::org.rubypeople.rdt.refactoring.refactoringContext/org.rubypeople.rdt.refactoring.action.RenameAction,
+	handler=ActionDelegateHandlerProxy(null,org.rubypeople.rdt.refactoring.action.RenameAction),
+	expression=WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@20a25),sourcePriority=16384)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2010-03-20 18:03:17.118
+!MESSAGE Conflict for 'AUTOGEN:::org.rubypeople.rdt.refactoring.refactoringContext/org.rubypeople.rdt.refactoring.action.EncapsulateFieldAction':
+HandlerActivation(commandId=AUTOGEN:::org.rubypeople.rdt.refactoring.refactoringContext/org.rubypeople.rdt.refactoring.action.EncapsulateFieldAction,
+	handler=ActionDelegateHandlerProxy(null,org.rubypeople.rdt.refactoring.action.EncapsulateFieldAction),
+	expression=WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@20a25),sourcePriority=16384)
+HandlerActivation(commandId=AUTOGEN:::org.rubypeople.rdt.refactoring.refactoringContext/org.rubypeople.rdt.refactoring.action.EncapsulateFieldAction,
+	handler=ActionDelegateHandlerProxy(null,org.rubypeople.rdt.refactoring.action.EncapsulateFieldAction),
+	expression=WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@20a25),sourcePriority=16384)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2010-03-20 18:03:17.119
+!MESSAGE Conflict for 'AUTOGEN:::org.rubypeople.rdt.refactoring.refactoringContext/org.rubypeople.rdt.refactoring.action.MoveFieldAction':
+HandlerActivation(commandId=AUTOGEN:::org.rubypeople.rdt.refactoring.refactoringContext/org.rubypeople.rdt.refactoring.action.MoveFieldAction,
+	handler=ActionDelegateHandlerProxy(null,org.rubypeople.rdt.refactoring.action.MoveFieldAction),
+	expression=WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@20a25),sourcePriority=16384)
+HandlerActivation(commandId=AUTOGEN:::org.rubypeople.rdt.refactoring.refactoringContext/org.rubypeople.rdt.refactoring.action.MoveFieldAction,
+	handler=ActionDelegateHandlerProxy(null,org.rubypeople.rdt.refactoring.action.MoveFieldAction),
+	expression=WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@20a25),sourcePriority=16384)
+
+!ENTRY org.eclipse.core.net 1 0 2010-03-20 18:03:17.830
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.rubypeople.rdt.launching 1 -1 2010-03-20 18:03:19.821
+!MESSAGE Starting: /System/Library/Frameworks/Ruby.framework/Versions/Current/usr/bin/ruby -I /Users/santoash/Projects/cq/eclipse/.metadata/.plugins/org.rubypeople.rdt.launching/ruby/flush -rrdt_stream_sync.rb -- /System/Library/Frameworks/Ruby.framework/Versions/Current/usr/bin/gem sources -l
+
+!ENTRY org.rubypeople.rdt.launching 1 -1 2010-03-20 18:03:19.958
+!MESSAGE Starting: /System/Library/Frameworks/Ruby.framework/Versions/Current/usr/bin/ruby -I /Users/santoash/Projects/cq/eclipse/.metadata/.plugins/org.rubypeople.rdt.launching/ruby/flush -rrdt_stream_sync.rb -- /System/Library/Frameworks/Ruby.framework/Versions/Current/usr/bin/gem -v
+
+!ENTRY org.rubypeople.rdt.launching 1 -1 2010-03-20 18:03:20.924
+!MESSAGE Starting: /System/Library/Frameworks/Ruby.framework/Versions/Current/usr/bin/ruby -I /Users/santoash/Projects/cq/eclipse/.metadata/.plugins/org.rubypeople.rdt.launching/ruby/flush -rrdt_stream_sync.rb -- /System/Library/Frameworks/Ruby.framework/Versions/Current/usr/bin/gem query -d
+
+!ENTRY org.rubypeople.rdt.launching 1 -1 2010-03-20 18:03:26.772
+!MESSAGE Starting: /System/Library/Frameworks/Ruby.framework/Versions/Current/usr/bin/ruby -r rubygems -e p(Gem.path) -I /Users/santoash/Projects/cq/eclipse/.metadata/.plugins/org.rubypeople.rdt.launching/ruby/flush -rrdt_stream_sync.rb -- /System/Library/Frameworks/Ruby.framework/Versions/Current/usr/bin/gem
+
+!ENTRY com.aptana.ide.core 4 0 2010-03-20 18:04:24.909
+!MESSAGE (Build 2.0.0.1258063583) [ERROR] An error occurred while shutting down the database
+!STACK 0
+java.sql.SQLException: No suitable driver
+	at java.sql.DriverManager.getConnection(DriverManager.java:545)
+	at java.sql.DriverManager.getConnection(DriverManager.java:193)
+	at com.aptana.ide.core.db.AptanaDB.shutdown(AptanaDB.java:320)
+	at com.aptana.ide.core.AptanaCorePlugin.stop(AptanaCorePlugin.java:73)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl$2.run(BundleContextImpl.java:843)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.stop(BundleContextImpl.java:836)
+	at org.eclipse.osgi.framework.internal.core.BundleHost.stopWorker(BundleHost.java:474)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.suspend(AbstractBundle.java:546)
+	at org.eclipse.osgi.framework.internal.core.Framework.suspendBundle(Framework.java:1098)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.decFWSL(StartLevelManager.java:593)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStartLevel(StartLevelManager.java:261)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.shutdown(StartLevelManager.java:216)
+	at org.eclipse.osgi.framework.internal.core.InternalSystemBundle.suspend(InternalSystemBundle.java:266)
+	at org.eclipse.osgi.framework.internal.core.Framework.shutdown(Framework.java:685)
+	at org.eclipse.osgi.framework.internal.core.Framework.close(Framework.java:583)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.shutdown(EclipseStarter.java:409)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:200)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:592)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:559)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:514)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1311)

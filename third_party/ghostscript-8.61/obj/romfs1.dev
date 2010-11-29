@@ -1,0 +1,3 @@
+-obj ./obj/gsiorom.o
+-iodev rom
+-obj ./obj/gsromfs.o

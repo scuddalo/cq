@@ -1,0 +1,2 @@
+module SeekHelper
+end

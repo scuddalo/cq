@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuremap [
+<!ELEMENT configuremap (configure)+>
+<!ELEMENT configure (#PCDATA)>
+<!ATTLIST configure name CDATA #REQUIRED>
+<!ATTLIST configure value CDATA #REQUIRED>
+]>
+<configuremap>
+  <configure name="NAME" value="ImageMagick"/>
+  <configure name="LIB_VERSION" value="0x637"/>
+  <configure name="LIB_VERSION_NUMBER" value="6,3,7,1"/>
+  <configure name="RELEASE_DATE" value="04/10/10"/>
+  <configure name="CONFIGURE" value="./configure /usr/local/share/config.site /usr/local/etc/config.site"/>
+  <configure name="PREFIX" value="/usr/local"/>
+  <configure name="EXEC-PREFIX" value="/usr/local"/>
+  <configure name="VERSION" value="6.3.7"/>
+  <configure name="CC" value="gcc"/>
+  <configure name="CFLAGS" value="-liconv -Wall -W -D_THREAD_SAFE"/>
+  <configure name="CPPFLAGS" value="-I/usr/local/include"/>
+  <configure name="PCFLAGS" value=""/>
+  <configure name="DEFS" value="-DHAVE_CONFIG_H"/>
+  <configure name="LDFLAGS" value="-L/usr/local/lib -L/usr/local/lib -L/usr/X11/lib -R/usr/X11/lib -L/usr/X11/lib -lfreetype -lz -Wl,-framework,CoreServices -Wl,-framework,ApplicationServices"/>
+  <configure name="LIBS" value="-lMagick -lfreetype -ljpeg -L/opt/local/lib -lfontconfig -lexpat -lfreetype -lz -liconv -lXext -lSM -lICE -lX11 -lXt -lz -lm -lpthread"/>
+  <configure name="CXX" value="g++"/>
+  <configure name="CXXFLAGS" value="-g -O2 -Wall -W -D_THREAD_SAFE"/>
+  <configure name="DISTCHECK_CONFIG_FLAGS" value="'CFLAGS=-liconv' 'CPPFLAGS=-I/usr/local/include' 'LDFLAGS=-L/usr/local/lib' --disable-deprecate --with-bzlib=no --with-djvu=no --with-fontpath="/>
+  <configure name="HOST" value="i386-apple-darwin9.8.0"/>
+  <configure name="DELEGATES" value="fontconfig freetype jpeg png x11 xml zlib"/>
+  <configure name="COPYRIGHT" value="Copyright (C) 1999-2007 ImageMagick Studio LLC"/>
+  <configure name="WEBSITE" value="http://www.imagemagick.org"/>
+  <configure name="QuantumDepth" value="@QuantumDepth@"/>
+</configuremap>

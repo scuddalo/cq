@@ -1,0 +1,3 @@
+-obj ./obj/zcspixel.o
+-oper zcspixel
+-include ./obj/cspixlib

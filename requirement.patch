@@ -1,0 +1,42 @@
+--- a/railties/lib/rails/gem_dependency.rb
++++ b/railties/lib/rails/gem_dependency.rb
+@@ -83,7 +83,7 @@
+       specification.dependencies.reject do |dependency|
+         dependency.type == :development
+       end.map do |dependency|
+-        GemDependency.new(dependency.name, :requirement => dependency.version_requirements)
++        GemDependency.new(dependency.name, :requirement => (dependency.respond_to?(:requirement) ? dependency.requirement : dependency.version_requirements))
+       end
+     end
+ 
+@@ -115,9 +115,16 @@
+       @spec = s
+     end
+ 
+-    def requirement
+-      r = version_requirements
+-      (r == Gem::Requirement.default) ? nil : r
++    if method_defined?(:requirement)
++      def requirement
++        req = super
++        req unless req == Gem::Requirement.default
++      end
++    else
++      def requirement
++        req = version_requirements
++        req unless req == Gem::Requirement.default
++      end
+     end
+ 
+     def built?
+--- a/railties/test/gem_dependency_test.rb
++++ b/railties/test/gem_dependency_test.rb
+@@ -174,7 +174,7 @@
+   def test_gem_from_directory_name
+     dummy_gem = Rails::GemDependency.from_directory_name('dummy-gem-1.1', false)
+     assert_equal 'dummy-gem', dummy_gem.name
+-    assert_equal '= 1.1',     dummy_gem.version_requirements.to_s
++    assert_equal '= 1.1',     dummy_gem.requirement.to_s
+   end
+ 
+   def test_gem_from_directory_name_loads_specification_successfully

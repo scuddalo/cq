@@ -1,0 +1,76 @@
+ 
+- Loopt is currently not outside of the US. SeekYou can be used to target markets in Europe and other countries where penetration of telecom is increasing e.g. India
+
+* I agree.  we can absolutely have this as our vision. But I'm not sure, if this will be a convincing differentiator though. we have to first target US before we go on to the international market. Also we have to take into account that China and India (major cellphone markets) don't have the edge/3g networks like the ones we have (i.e their internet from phone will be super slow.). I think we need to chat about this a little bit.
+	
+- Loopt does not support the samsung PDA of AT&T which is a corporate app
+
+* I think these differentiators will be more for us (internal) than to the people who we are trying to convince. Its a great to note these things and make sure that we shape vision/plan accordingly. Does that make sense?
+
+- Loopt does not appear to be a corporate app - it seems more like a social compass and that is how they brand it. To draw a parallel, difference between SeekYou and Loopt could be the difference between LinkedIn and Facebook. The fact that they now have a "Friends you may know" feature which is similar to facebook further ratifies the point of it being a "Social networking" app and not a "Serious Corporate/Networking" app like LinkedIn. In a nutshell, we have a niche' market we intend to target unlike Loopt which is much broaders in its audience. Another point about it being a social app - an april 15th update - "We just launched Facebook Connect for Loopt! Just log-in to your Loopt account online via loopt.com and select “Go here to setup your Facebook link” to get started". Also, it is connected to twitter, yorutube, flickr and myspace
+
+* Sounds great!
+
+- Could not get Loopt to work on my other phone as well
+- We need to assess the ability to have SeekYou compatible with corporate phones generally used by consulting companies. E.g. Windows based mobile devices like the blackjack, the blackberry etc. Loopt supports the blackberry
+
+* Need to formulate a vision statement (if supporting all platforms is infact important to us)
+
+- Loopt works as a friend tracking tool and shows the location of friends on the map in a certain area. I'm not sure if it provides the ability to selectively group/categorize friends in circles and groups
+
+* Good point. I haven't looked at it yet. I will look at it in my iPhone.
+
+- It seems to be a facebook on steroids on the mobile. Also, I'm not sure if it leverages the LBS aspects from the standpoint of push based advertising to the full. This may be a big differentiator for SeekYou as a revenue channel. That said, it supports pull based messaging
+
+* Absolutely! (if we coin this right, this alone could be enough of a differentiator for a VC)
+
+- Does offer the ability to hide status from select friends (not sure if this is enabled through a broader group feature; e.g. hide yourself from a group and not just a select few)
+
+* We could do this.
+
+- Loopt currently requires the use of SMS text messages. Standard data and messaging charges from your carrier apply. If we can find a way to avoid this that would be a big differentiator. Thoughts on that Santoash?
+
+* Our app doesn't use SMS. We have our own messaging system. 
+
+- Potential interesting read (not related to SeekYou directly but interesting read all the same) http://www.pcworld.com/article/158049-2/10_web_sites_that_will_matter_in_2009.html. The one thing I gathered from this article is that, there is still room for niche applications targeted at specific user groups
+
+- User base is north of 1M users - I believe this is registered users vs. actual active uers. Another potential differentiator for SeekYou would be greater conversion ratio of registered users to active users
+
+* But, how are we converting them? I think we need a plan to do that before we can call it a differentiator. Am I making sense?
+
+- Again, Latitude is not a serious application. It is more of a social networking tool that targets a much broader user base. SeekYou is intended to be a serious application meant. Even the way the ads for latitude are developed, they position it as a casual application
+
+* Agree.
+
+- Appears that Latitude lets you track people, not sure if it provides the ability to beam people within a specified radius. It is much broader than that
+
+* I think so. It returns all your friends, I think.
+
+- Dopplr, again is a social atlas for travel primarily. Again a social atlast but clubbed with the concept of traveling
+- All these again legitimize the space, since everyone seems to have a large enough target base even though they are niche in their intended target user base
+
+* Agree.
+ 
+- SeekYou is a phone based application and will provide the ability to locate a user based on the mobile phone location. Latitude on the other hand requires the user to go online to update their location. This is a cumbersome process and a step most users would like to skip if made possible
+
+* I don't think this is right. Latitude allows both auto update and manual update mode. I think this is a feature we might choose to implement if we want to. Our backend could be tweaked a little bit to support this.
+
+- SeekYou will be targeting niche' users - the focus will be on corporate users (e.g. Deloitte as an enterprise tool) and/or on students (through universities like Carnegie Mellon)
+
+* Good idea. I think starting with CMU alumni group is a GREAT plus.
+
+- SeekYou will support compabtibility with more platforms from the start
+
+* Again, we need to formulate a vision statement and this should be part of that.
+
+- SeekYou will be pushed to users rather than a pull based approach
+
+* I like this approach.
+
+- Possibilities of potentially developing SeekYou in conjunction with Verizon and/or other telecom providers (e.g Qualcomm)
+
+* Sounds good.
+
+- Ease of Use: Designed with certain key principles in mind (e.g. minimal effort from the user for updating locations, updating contacts, etc)
+
+* This should also be part of the vision statement.

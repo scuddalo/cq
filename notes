@@ -1,0 +1,55 @@
+Backend work needed to support the above functionality:
+
+Target date: 28th feb
+======================
+1) Api to create user + picture + tier
+   make a column to store picture.
+
+Target date: 13th mar
+======================
+2) Api to get friends near to given -> tier, location
+   change the existing whos_arround() logic to include the tier
+3) Api to create a seek message + who the message is sent to
+4) Api to get all responses + location of the responses, for a particular seek
+5) Apt to get all the seek messages sent to you given a profile_id
+6) Api to accept/reject given a seek message id
+   - redesign the messaging system.
+       - two types of messages
+           1) seek message
+           2) responses
+
+7) Api to get all business given a location (not that important. can fake this feature for demo.)
+
+Target date: March 20th.
+=========================
+Home Screen:
+   different pins for different tiers
+   fix the bug about having two pins at the same point
+
+Seek Screen:
+   list of friends with tiers with checkboxes
+   picture of friends
+   text box to compose message
+
+Target date: march 27th:
+========================
+Seek Management:
+   list people who the last seek was sent to
+       - picture
+       - message sent back as response
+       - distance from where the user is responding
+       - suggested locations close to the seeker
+
+Target date: April 5th:
+========================
+Messages Screen:
+   - picture and name of the seeker
+   - message seny the seeker
+   - location where the seeker is
+   - check box to accept/reject the message
+   - accept and reject button at the bottom of the screen
+
+Preferences:
+   Which tiers you want to see?
+   Distance you want to search for connections?
+   I'm off radar

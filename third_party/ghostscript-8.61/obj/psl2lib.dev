@@ -1,0 +1,4 @@
+-obj ./obj/gxi12bit.o ./obj/gxiscale.o
+-imageclass 0_interpolate 2_fracs
+-include ./obj/colimlib ./obj/psl2cs
+-replace ./obj/no12bit
