@@ -22,3 +22,6 @@
 [submodule "vendor/plugins/paperclip"]
 	path = vendor/plugins/paperclip
 	url = git://github.com/thoughtbot/paperclip.git
+[submodule "file_column"]
+	path = file_column
+	url = git://github.com/activescaffold/file_column.git
