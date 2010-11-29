@@ -37,16 +37,16 @@ class FriendsController < ApplicationController
   def following_by_tier
     raise ActiveRecord::RecordNotFound.new("Parameter tier must be one of [1, 2, 3]") unless (1..3).include?(requested_tier)
 
-	respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => by_tier = requested_profile.followees.by_tier(requested_tier).to_xml }
+	  respond_to do |format|
+        format.html # new.html.erb
+        format.xml  { render :xml => by_tier = requested_profile.followees.by_tier(requested_tier).to_xml }
     end
   end
-
+  
   # POST only: add a following
   def follow
     requested_profile.follow!(requested_follow_profile)
-    redirect_to :action => 'following', :profile_id => current_user.profile
+    redirect_to :action => 'following', :profile_id => current_user.profile, :format => params[:format]
   end
   
   # POST only: delete a following

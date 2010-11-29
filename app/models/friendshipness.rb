@@ -25,11 +25,12 @@ module Friendshipness
   
   def friends(force_reload = false)
     @friends = nil if force_reload
-    @friends ||= friendships(force_reload).map { |f| f.followee }
+    @friends ||= profile.follower_friends(force_reload).map { |f| f.followee }
   end
   
-  def friends_with?(user_or_profile)
-    profile.friends.include?(user_or_profile.profile)
+  def friends_with?(user_or_profile, force_reload=false)
+    @friends = friends(force_reload)
+    @friends.include?(user_or_profile.profile)
   end
   
   def followed_by?(user_or_profile)
@@ -41,9 +42,18 @@ module Friendshipness
   end
   
   def following_in_tiers?(user_or_profile, *tiers)
+    debugger
     result = false
     Friendship.find_friendship(self, user_or_profile.profile) do |f|
       result = (f && tiers.include?(f.tier))
+    end
+    result
+  end
+  
+  def which_tier(user_or_profile)
+    result = -1
+    Friendship.find_friendship(self, user_or_profile.profile ) do |f|
+      result = f.tier unless f.nil?
     end
     result
   end

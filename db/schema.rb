@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090517144713) do
+ActiveRecord::Schema.define(:version => 20100516100027) do
 
   create_table "favorite_locations", :force => true do |t|
     t.integer  "location_id"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(:version => 20090517144713) do
   create_table "invitations", :force => true do |t|
     t.integer  "from_profile_id"
     t.integer  "to_profile_id"
-    t.boolean  "status"
+    t.boolean  "status",          :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -68,29 +68,36 @@ ActiveRecord::Schema.define(:version => 20090517144713) do
   end
 
   create_table "messages", :force => true do |t|
-    t.integer  "from_profile_id"
-    t.integer  "to_profile_id"
     t.text     "content"
     t.boolean  "read",            :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "from_profile_id"
+    t.integer  "to_profile_id"
     t.boolean  "is_accepted"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
-  create_table "profiles", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "display_name"
-    t.text     "description"
-    t.string   "email"
-    t.string   "cell_number"
-    t.string   "cell_carrier"
-    t.integer  "location_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "status"
+# Could not dump table "profiles" because of following StandardError
+#   Unknown type 'image' for column 'picture'
+
+  create_table "seek_requests", :force => true do |t|
+    t.integer "seek_id"
+    t.integer "seeked_profile_id"
   end
 
-  add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id"
+  create_table "seek_responses", :force => true do |t|
+    t.integer "seek_id"
+    t.integer "responding_profile_id"
+    t.integer "message_id"
+    t.boolean "accept"
+  end
+
+  create_table "seeks", :force => true do |t|
+    t.integer "owner_id"
+    t.integer "message_id"
+    t.boolean "is_active"
+    t.decimal "location_id"
+  end
 
   create_table "settings", :force => true do |t|
     t.integer  "profile_id"

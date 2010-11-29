@@ -1,12 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :messages,:member => {:send_message => :get,:send_invitation => :post,:send_message_to_group => :get, :show_message => :post,:accept_message => :post,:reject_message => :post},
-:collection => {:message_sent=> :get}
 
-  map.resources :groups ,:member => {:group_members => :get,:add_friends_in_group => :get,:create_group_members => :post,:remove_friends_in_group => :get}
-
-
-
-  
   # The following methods can be used in block form, like so:
   #   map.html_or_api do |m|
   #     m.connect ...
@@ -23,6 +16,23 @@ ActionController::Routing::Routes.draw do |map|
   # * html_or_api_get       (great for data that can be seen in browser or via the API)
   # * html_or_api_post      (great for data to be updated in browser or via API)
 
+  map.resources :messages,:member => {
+    :send_message => :get,
+    :send_invitation => :post,
+    :invitations => :get,
+    :send_message_to_group => :get, 
+    :show_message => :post,
+    :accept_message => :post,
+    :reject_message => :post, 
+    :accept_invitation => :post, 
+    :reject_invitation => :post},
+:collection => {:message_sent=> :get}
+
+  #map.connect "messages/:message_id/invitations.:format", :controller => "messages", :action => "invitations"
+
+
+  map.resources :groups ,:member => {:group_members => :get,:add_friends_in_group => :get,:create_group_members => :post,:remove_friends_in_group => :get}
+
   map.root :controller => 'static', :action => 'welcome'
   
   map.get(:controller => 'static') do |m|
@@ -31,13 +41,26 @@ ActionController::Routing::Routes.draw do |map|
   end
 
 
+
   map.connect "search/",:controller => "search",:action     => "index"
   map.connect "search/result",:controller => "search",:action     => "result"
   map.connect "friends/follow",:controller => "friends",:action     => "follow"
   map.connect "group/",:controller => "group",:action     => "index"
 
 
- 
+  map.with_options(:controller => 'seek') do |m|
+    m.post do |n| 
+      n.create_seek 'seek/create.:format', :action => 'create'
+      n.accept_seek 'seek/response/accept.:format', :action => 'accept_seek'
+      n.reject_seek 'seek/response/reject.:format', :action => 'reject_seek'
+    end
+
+    m.get do |n|
+      n.seek_requests 'seek/requests.:format', :action => 'seek_requests'
+      n.seek_requests 'seek/:seek_id/requests.:format', :action => 'seek_requests_for_seek'
+    end
+  end
+
 
 
   map.with_options(:controller => 'accounts') do |m|
@@ -62,12 +85,16 @@ ActionController::Routing::Routes.draw do |map|
       n.getting_started 'people/:profile_id/getting_started.:format', :action => 'getting_started'
       n.edit_profile 'people/:profile_id/edit.:format', :action => 'edit'
       n.refer_a_friend 'refer_a_friend.:format', :action => 'refer_a_friend_form'
+      n.active_seek_requests 'people/:profile_id/seek_requests.:format', :action => 'seek_requests'
+      n.active_seek 'people/:profile_id/active_seek.:format', :action => 'active_seek'
       ##n.profile_search 'people/search.:format', :action => 'search'
       ##n.profile_search_results 'people/search/results.:format', :action => 'find_profile'
     end
     
     m.post do |n|
       n.connect 'people/:profile_id.:format', :action => 'update'
+      n.connect 'people/:profile_id/upload_photo.:format', :action => 'upload_photo'
+      n.connect 'people/:profile_id/update_status.:format', :action => 'update_status'
     end
     
     m.post do |n|
@@ -96,9 +123,9 @@ ActionController::Routing::Routes.draw do |map|
       n.edit_location 'people/:profile_id/location/edit.:format', :action => 'edit'
     end
     
-		m.post do |n|
+    m.post do |n|
       n.connect 'location.:format', :action => 'update'
-			n.connect 'location/location_modify.:format', :action => 'modify'
+      n.connect 'location/location_modify.:format', :action => 'modify'
     end
 
 

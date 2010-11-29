@@ -10,6 +10,6 @@
 
 <ul class='section'>
 	<% whos_around.each do |p| -%>
-	<li><%= link_to p, profile_path(:profile_id => p) -%> - <i><%= h p.status -%>...</i> <%= link_to 'Send Invitation', send_invitation_message_path(p), :method => :post %></li>
+	<li><%= link_to p, profile_path(:profile_id => p) -%> - <i><%= h p.distance_to(requested_profile) -%> - <%= h p.status -%>...</i> <%= link_to 'Send Invitation', send_invitation_message_path(p), :method => :post %></li>
 	<% end -%>
 </ul>

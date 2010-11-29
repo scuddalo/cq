@@ -32,16 +32,21 @@ module Location::Locatable
     #
     # Returns [] if +location+ is +nil+.
     def find_within(options = {})
-      debugger
       return [] if self.location.nil?
       include_self = (options.delete(:include_self) != false)
-    
+      tier = options.delete(:tier)
+      tier = tier.to_i unless tier.nil?
+      
       # want location to include itself regardless:
       locations = self.location.find_within(options.merge(:include_self => true))
-    
+
       result = self.class.find(:all, :conditions => { :location_id => locations.map(&:id) })
       result.delete(self) unless include_self
-      result
+      if tier.nil? 
+        result
+      else
+        result.select {|p| self.following_in_tiers?(p, tier) }
+      end
     end
   
     # Alias for +find_within+.
@@ -62,6 +67,10 @@ module Location::Locatable
       else
         raise ArgumentError.new("#{other} is neither a Location nor a Locatable")
       end
+    end
+    
+    def distance_to(other)
+      self.location.distance_to(other.location)
     end
     
     def location_with_unparseable

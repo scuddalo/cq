@@ -24,10 +24,59 @@ class ProfilesController < ApplicationController
 
   # POST only
   def update
-    logger.info ("***************** I am in profile_controller.update")
     update_profile(params[:profile])
     update_password(params[:old_password], params[:new_password], params[:new_password_confirmation])
     redirect_to :action => 'show'
+  end
+  
+  def upload_photo
+    requested_profile.photo = params["profile"]["photo"]
+    requested_profile.save!
+    respond_to do |format|
+      format.xml { 
+                    render :xml => requested_profile.to_xml(:include => [:location, :user], :methods => [:is_friends_with_current_profile, :distance_from_current_profile, :photo_url, :current_user_tier])
+                 }
+    end
+  end
+  
+  def update_status
+    if !params[:status].nil?
+      requested_profile.status = params[:status]
+      requested_profile.save!  
+       respond_to do |format|
+          format.xml { 
+                        render :xml => requested_profile.to_xml(:include => [:location, :user], :methods => [:is_friends_with_current_profile, :distance_from_current_profile, :photo_url, :current_user_tier])
+                     }
+        end
+    end
+  end
+  
+  def seek_requests
+    respond_to do |format|
+      format.xml {
+      #   seek_requests_xml = ""
+      #   builder = Builder::XmlMarkup.new(:target=>seek_requests_xml, :indent=>2)
+      #   requested_profile.active_seek_requests.each do |seek_request|
+      #     builder.
+      #     
+      #   end
+        render :xml => requested_profile.active_seek_requests.to_xml(:include => {:seek => {:include => { :owner => {:include => [:user, :location]}, 
+                                                                                                          :message => {:only => [:content, :id]},
+                                                                                                        }
+                                                                                           },
+                                                                                  :seeked_profile => {:include => [:user, :location]} 
+                                                                                  },
+                                                                      :methods => [:is_accepted]
+                                                                    )
+      }
+    end
+  end
+
+  def active_seek
+    render :xml => requested_profile.active_seek.to_xml({:include => { :owner => {:include => [:user, :location]}, 
+                                                                       :message => {:only => [:content, :id]},
+                                                                     }
+                                                        })
   end
   
   # GET only
@@ -56,5 +105,7 @@ class ProfilesController < ApplicationController
       flash['notice 2'] = 'Your password has been changed'
     end
   end
+  
+
   
 end

@@ -76,7 +76,7 @@ module Rails
       return [] if framework_gem?
       return [] if specification.nil?
       all_dependencies = specification.dependencies.map do |dependency|
-        GemDependency.new(dependency.name, :requirement => dependency.version_requirements)
+        GemDependency.new(dependency.name, :requirement => dependency.requirements)
       end
       all_dependencies += all_dependencies.map(&:dependencies).flatten
       all_dependencies.uniq
@@ -104,7 +104,7 @@ module Rails
     end
 
     def requirement
-      r = @dep.version_requirements
+      r = @dep.requirements
       (r == Gem::Requirement.default) ? nil : r
     end
 
@@ -222,7 +222,7 @@ module Rails
                   "can't activate #{@dep}, already activated #{existing_spec.full_name}"
           end
           # we're stuck with it, so change to match
-          @dep.version_requirements = Gem::Requirement.create("=#{existing_spec.version}")
+          @dep.requirements = Gem::Requirement.create("=#{existing_spec.version}")
           existing_spec
         else
           # new load

@@ -23,7 +23,8 @@ class AccountsController < ApplicationController
       
       respond_to do |format|
         format.html { redirect_back_or_default :controller => 'profiles', :profile_id => current_user.profile.id, :action => 'dashboard'}
-        format.xml { render :xml => self.current_user.to_xml(:include => {:profile => {:include => [:location] }})}
+        #format.xml { render :xml => self.current_user.to_xml(:include => {:profile => {:include => [:location] }})}
+        format.xml { render :xml => self.current_user.profile.to_xml(:include => [:user, :location])}
       end
 
     else

@@ -29,7 +29,6 @@ module Utilities
         end
     
         def requires_is_self(options = {})
-          debugger
           append_before_filter :is_self_required!, options
         end
         
