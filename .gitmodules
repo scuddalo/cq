@@ -19,3 +19,6 @@
 [submodule "vendor/plugins/avatar"]
 	path = vendor/plugins/avatar
 	url = git://github.com/gcnovus/avatar.git
+[submodule "vendor/plugins/paperclip"]
+	path = vendor/plugins/paperclip
+	url = git://github.com/thoughtbot/paperclip.git
