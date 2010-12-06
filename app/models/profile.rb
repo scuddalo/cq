@@ -49,7 +49,7 @@ class Profile < ActiveRecord::Base
   end
   
   def to_param
-    "#{self.id}-#{to_s.to_safe_uri}"
+    "#{self.id}-#{user.login.to_safe_uri}"
   end
 
   # doesn't belong here. Todo: think of some other way to do this.
