@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100516100027) do
+ActiveRecord::Schema.define(:version => 20100425004110) do
 
   create_table "favorite_locations", :force => true do |t|
     t.integer  "location_id"
@@ -69,16 +69,29 @@ ActiveRecord::Schema.define(:version => 20100516100027) do
 
   create_table "messages", :force => true do |t|
     t.text     "content"
-    t.boolean  "read",            :default => false
+    t.boolean  "read",       :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "from_profile_id"
-    t.integer  "to_profile_id"
-    t.boolean  "is_accepted"
   end
 
-# Could not dump table "profiles" because of following StandardError
-#   Unknown type 'image' for column 'picture'
+  create_table "profiles", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "display_name"
+    t.text     "description"
+    t.string   "email"
+    t.string   "cell_number"
+    t.string   "cell_carrier"
+    t.integer  "location_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "status"
+    t.binary   "picture"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+  end
+
+  add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id"
 
   create_table "seek_requests", :force => true do |t|
     t.integer "seek_id"
@@ -96,7 +109,6 @@ ActiveRecord::Schema.define(:version => 20100516100027) do
     t.integer "owner_id"
     t.integer "message_id"
     t.boolean "is_active"
-    t.decimal "location_id"
   end
 
   create_table "settings", :force => true do |t|
