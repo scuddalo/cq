@@ -1,6 +1,6 @@
 class AddPictureToProfile < ActiveRecord::Migration
   def self.up
-    add_column :profiles, :picture, :bytea
+    add_column :profiles, :picture, :blob
     remove_column :profiles, :image_path
   end
 
