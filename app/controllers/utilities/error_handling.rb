@@ -1,5 +1,5 @@
-require 'action_controller/base/base'
-require 'action_controller/base/rescue'
+require 'action_controller/base'
+require 'action_controller/rescue'
 require 'action_view/base'
 
 module ActionController

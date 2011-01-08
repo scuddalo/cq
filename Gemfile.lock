@@ -48,6 +48,7 @@ DEPENDENCIES
   actionmailer (= 2.3.10)
   activerecord (= 2.3.10)
   activeresource (= 2.3.10)
+  activesupport (= 2.3.10)
   geokit
   heroku
   mocha

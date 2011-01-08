@@ -42,7 +42,7 @@ Rails::Initializer.run do |config|
   #       #{RAILS_ROOT}/app/models
   #       #{RAILS_ROOT}/app/views
   #     )
-    config.load_paths += %W(
+    config.autoload_paths += %W(
       #{RAILS_ROOT}/app/controllers/utilities
     )
   # Force all environments to use the same logger level
