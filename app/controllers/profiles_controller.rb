@@ -81,17 +81,17 @@ class ProfilesController < ApplicationController
   
   
   def number_of_unreads
-    unread_active_seek_req_count = 0;
-    unread_seek_responses_for_active_seek = 0;
+    unread_active_seek_req_count = 0
+    unread_seek_responses_for_active_seek = 0
     requested_profile.active_seek_requests.each do |req| 
       if !req.message.read
-        unread_active_seek_req_count++;
+        unread_active_seek_req_count++
       end
     end
     
     requested_profile.active_seek.seek_responses.each do |resp|
       if !resp.message.read
-        unread_seek_responses_for_active_seek++;
+        unread_seek_responses_for_active_seek++
       end
     end
     
