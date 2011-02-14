@@ -120,7 +120,6 @@ class SeekController < ApplicationController
   # params => {:seek_request_ids, :message}
   def accept_seek
     seek_request_ids = params[:seek_request_ids]
-    puts "seek_request_ids: #{seek_request_ids}"
     @seek_responses = create_seek_response(seek_request_ids, params[:message],  true)
     #render
     respond_to do |format|
@@ -130,6 +129,16 @@ class SeekController < ApplicationController
       }
     end
   end
+  
+  # POST
+  # /seek/request/:seek_request_id/mark_read.xml
+  def mark_seek_request_as_read
+    seek_request_id = params[:seek_request_id]
+    seekRequest = SeekRequest.find_by_id(seek_request_id)
+    seekRequest.message.read = 1;
+    seekRequest.message.save!
+  end
+  
 
   # POST
   # /seek/response/reject.xml
@@ -168,4 +177,5 @@ class SeekController < ApplicationController
     @seek_responses
   end
 
+  
 end
