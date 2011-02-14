@@ -1,6 +1,6 @@
 class MoveMessageIdFromSeekToSeekRequests < ActiveRecord::Migration
   def self.up
-    add_column :seek_requests, :message_id, :integer, 
+    add_column :seek_requests, :message_id, :integer
     remove_column :seeks, :message_id
   end
 
