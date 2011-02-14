@@ -3,10 +3,15 @@ class SeekResponse < ActiveRecord::Base
   belongs_to :seek,
              :class_name => "Seek",
              :foreign_key => "seek_id"
+             
   belongs_to :responding_profile,
              :class_name => "Profile",
              :foreign_key => "responding_profile_id"
   has_one :message,
           :class_name => "Message",
           :foreign_key => "message_id"
+
+  def seek_response_for_a_seek(prof) 
+    SeekResponse.find(:all, :conditions => {:seek_id => prof.active_seek.id});
+  end
 end

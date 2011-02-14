@@ -5,7 +5,10 @@ class Seek < ActiveRecord::Base
 
 
   has_many :seek_requests
-  has_many :seek_responses
+  
+  has_many :seek_responses, 
+           :class_name => "SeekResponse", 
+           :foreign_key => "seek_id"
 
   def self.find_active_seek(seek_owner) 
     Seek.find(:all, :conditions => {:owner_id => seek_owner, :is_active => true})
