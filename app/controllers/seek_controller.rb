@@ -139,7 +139,9 @@ class SeekController < ApplicationController
     seek_request.message.save!
     respond_to do |format| 
        format.html 
-       format.xml { head :ok }  
+       format.xml { 
+         render :xml => seek_request.to_xml
+      }  
     end
   end
   
