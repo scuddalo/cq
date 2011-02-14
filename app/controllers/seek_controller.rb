@@ -134,12 +134,12 @@ class SeekController < ApplicationController
   # /seek/request/:seek_request_id/mark_read.xml
   def mark_seek_request_as_read
     seek_request_id = params[:seek_request_id]
-    seekRequest = SeekRequest.find_by_id(seek_request_id)
-    seekRequest.message.read = 1;
-    seekRequest.message.save!
+    seek_request = SeekRequest.find_by_id(seek_request_id)
+    seek_request.message.read = 1;
+    seek_request.message.save!
     response_to do |format| 
        format.html 
-       format.xml { head :ok } 
+       format.xml { seek_request.to_xml } 
     end
   end
   
