@@ -89,12 +89,14 @@ class ProfilesController < ApplicationController
       end
     end
     
-    responses = requested_profile.active_seek.seek_responses unless requested_profile.active_seek.nil?
-    responses.each do |resp|
-      if !resp.message.nil? && !resp.message.read
-        unread_seek_responses_for_active_seek += 1
-      end
+    responses = requested_profile.active_seek.seek_responses unless requested_profile.active_seek.nil?    
+    unless responses.nil?
+      responses.each do |resp|
+        if !resp.message.nil? && !resp.message.read
+          unread_seek_responses_for_active_seek += 1
+        end
     end
+  end
     
     render :xml => {
       :unread_seek_requests => unread_active_seek_req_count,
