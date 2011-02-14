@@ -11,7 +11,7 @@ class SeekResponse < ActiveRecord::Base
           :class_name => "Message",
           :foreign_key => "message_id"
 
-  def seek_response_for_a_seek(prof) 
+  def self.seek_response_for_a_seek(prof) 
     SeekResponse.find(:all, :conditions => {:seek_id => prof.active_seek.id});
   end
 end
