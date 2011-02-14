@@ -85,13 +85,13 @@ class ProfilesController < ApplicationController
     unread_seek_responses_for_active_seek = 0
     requested_profile.active_seek_requests.each do |req| 
       if !req.message.read
-        unread_active_seek_req_count++
+        unread_active_seek_req_count += 1
       end
     end
     
     requested_profile.active_seek.seek_responses.each do |resp|
       if !resp.message.read
-        unread_seek_responses_for_active_seek++
+        unread_seek_responses_for_active_seek += 1
       end
     end
     
