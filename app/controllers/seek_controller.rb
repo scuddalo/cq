@@ -37,12 +37,11 @@ class SeekController < ApplicationController
         #seek requests
         seeked_profile_ids.each do |seeked_profile_id|
           seeked_profile = Profile.find_by_id(seeked_profile_id)
-          seek.seek_requests << SeekRequest.new(:seek => seek, :seeked_profile => seeked_profile)
+          #seek_msg
+          seek_message = Message.new(:content => params[:message])
+          seek.seek_requests << SeekRequest.new(:seek => seek, :seeked_profile => seeked_profile, :message => seek_message)
         end
-        #seek_msg
-        seek_message = Message.new(:content => params[:message])
 
-        seek.message = seek_message
         #is_active
         seek.is_active = true
         seek.save!
@@ -51,9 +50,9 @@ class SeekController < ApplicationController
         format.html 
         format.xml  { 
           render :xml => @seek.to_xml(:include=>{ :owner => {:include =>[:user,:location] }, 
-                                                  :message=>{}, 
                                                   :seek_requests=>{ :include => {
-                                                                                  :seeked_profile => {:include => [:user, :location]} 
+                                                                                  :seeked_profile => {:include => [:user, :location]},
+                                                                                  :message => {}
                                                                                 }
                                                                   }
                                                 }
@@ -73,10 +72,11 @@ class SeekController < ApplicationController
       format.html
       format.xml {
         render :xml => @seek_requests.to_xml(:include => {:seek => {:include => {:owner => {:include => [:user, :location]}, 
-                                                                                 :message => {:only => [:content, :id]},
+                                                                                 
                                                                                 }
                                                                    },
                                                           :seeked_profile => {:include => [:user, :location]}, 
+                                                          :message => {:only => [:content, :read, :id]},
                                                          },
                                               :methods => [:is_accepted]
                                             )
@@ -102,10 +102,10 @@ class SeekController < ApplicationController
         format.html
         format.xml {
           render :xml => @seek_requests.to_xml(:include => {:seek => {:include => {:owner => {:include => [:user, :location]}, 
-                                                                                   :message => {:only => [:content, :id]},
                                                                                   }
                                                                      },
-                                                            :seeked_profile => {:include => [:user, :location]} 
+                                                            :seeked_profile => {:include => [:user, :location]},
+                                                            :message => {:only => [:content, :id]}
                                                            },
                                                 :methods => [:is_accepted]
                                                            
@@ -144,6 +144,10 @@ class SeekController < ApplicationController
         render :xml => @seek_responses.to_xml
       }
     end
+  end
+  
+  def number_of_seeks
+    
   end
 
   

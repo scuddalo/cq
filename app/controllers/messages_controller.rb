@@ -255,5 +255,4 @@ class MessagesController < ApplicationController
       @message.save
       redirect_to messages_path
     end
-
 end

@@ -1,13 +1,8 @@
-class Seek < ActiveRecord::Base
-  
+class Seek < ActiveRecord::Base  
   belongs_to :owner,
              :class_name => "Profile",
              :foreign_key => "owner_id"
 
-  belongs_to :message,
-          :class_name => "Message",
-          :foreign_key => "message_id"
-          
 
   has_many :seek_requests
 
