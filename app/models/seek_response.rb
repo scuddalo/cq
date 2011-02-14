@@ -7,7 +7,9 @@ class SeekResponse < ActiveRecord::Base
   belongs_to :responding_profile,
              :class_name => "Profile",
              :foreign_key => "responding_profile_id"
-  has_one :message
+  belongs_to :message, 
+             :class_name => "Message"
+             :foreign_key => "message_id"
 
 
   def self.seek_response_for_a_seek(prof) 
