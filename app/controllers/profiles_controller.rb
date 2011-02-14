@@ -89,8 +89,7 @@ class ProfilesController < ApplicationController
       end
     end
     
-    responses = SeekResponse.seek_response_for_a_seek(requested_profile)
-    responses.each do |resp|
+    requested_profile.active_seek.seek_responses.each do |resp|
       if !resp.message.read
         unread_seek_responses_for_active_seek += 1
       end

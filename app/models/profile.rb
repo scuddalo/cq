@@ -80,6 +80,8 @@ class Profile < ActiveRecord::Base
   end
   
   def active_seek
-    Seek.find_active_seek(self);
+    s = Seek.find_active_seek(self);
+    result = s.kind_of?(Array) ? s.first : s
+    result
   end
 end
