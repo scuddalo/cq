@@ -90,6 +90,7 @@ ActionController::Routing::Routes.draw do |map|
       n.active_seek 'people/:profile_id/active_seek.:format', :action => 'active_seek'
       ##n.profile_search 'people/search.:format', :action => 'search'
       ##n.profile_search_results 'people/search/results.:format', :action => 'find_profile'
+      n.number_of_unread_messages 'people/:profile_id/unreads.:format', :action => 'number_of_unreads'
     end
     
     m.post do |n|

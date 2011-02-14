@@ -5,6 +5,7 @@ class Seek < ActiveRecord::Base
 
 
   has_many :seek_requests
+  has_many :seek_responses
 
   def self.find_active_seek(seek_owner) 
     Seek.find(:all, :conditions => {:owner_id => seek_owner, :is_active => true})

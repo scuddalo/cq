@@ -137,12 +137,7 @@ class SeekController < ApplicationController
     seek_request = SeekRequest.find_by_id(seek_request_id)
     seek_request.message.read = 1;
     seek_request.message.save!
-    respond_to do |format| 
-       format.html 
-       format.xml { 
-         render :xml => seek_request.to_xml
-      }  
-    end
+    render :nothing => true
   end
   
 

@@ -79,6 +79,28 @@ class ProfilesController < ApplicationController
                                                         })
   end
   
+  
+  def number_of_unreads
+    unread_active_seek_req_count = 0;
+    unread_seek_responses_for_active_seek = 0;
+    requested_profile.active_seek_requests.each do |req| 
+      if !req.message.read
+        unread_active_seek_req_count++;
+      end
+    end
+    
+    requested_profile.active_seek.seek_responses.each do |resp|
+      if !resp.message.read
+        unread_seek_responses_for_active_seek++;
+      end
+    end
+    
+    render :xml => {
+      :unread_seek_requests => unread_active_seek_req_count,
+      :unread_seek_responses => unread_seek_responses_for_active_seek
+    }.to_xml
+  end
+  
   # GET only
   def refer_a_friend_form
     render :action => 'refer_a_friend'
