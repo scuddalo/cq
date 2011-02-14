@@ -8,7 +8,7 @@ class SeekResponse < ActiveRecord::Base
              :class_name => "Profile",
              :foreign_key => "responding_profile_id"
   belongs_to :message, 
-             :class_name => "Message"
+             :class_name => "Message",
              :foreign_key => "message_id"
 
 
