@@ -53,7 +53,7 @@ ActionController::Routing::Routes.draw do |map|
       n.create_seek 'seek/create.:format', :action => 'create'
       n.accept_seek 'seek/response/accept.:format', :action => 'accept_seek'
       n.reject_seek 'seek/response/reject.:format', :action => 'reject_seek'
-      n.mark_as_read '/seek/request/:seek_request_id/mark_read', :action => 'mark_seek_request_as_read'
+      n.mark_as_read '/seek/request/:seek_request_id/mark_read.xml', :action => 'mark_seek_request_as_read'
     end
 
     m.get do |n|
