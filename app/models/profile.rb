@@ -71,8 +71,16 @@ class Profile < ActiveRecord::Base
   
   def active_seek_requests_since_last_push
     last_activity = PushActivity.find(:all, :order => "activity_date desc", :limit=> 1)
-    SeekRequest.find(:all,  :joins => "join seeks on seeks.id = seek_requests.seek_id", :conditions => "seeks.is_active = true and seek_requests.seeked_profile_id = #{self.id} and seek_requests > #{last_activity.activity_date}")
-    # SeekRequest.find_by_sql(' select *  from seek_requests srq join seeks s on (s.id = srq.seek_id) join messages m on (m.id = srq.message_id) where s.is_active=1 and ')
+    active_seek_requests_since_last_push = SeekRequest.find(:all,  
+                     :joins => "join seeks on seeks.id = seek_requests.seek_id", 
+                     :conditions => ["seeks.is_active = true 
+                                      and seek_requests.seeked_profile_id = ? 
+                                      and seek_requests.updated_at > ? ", 
+                                      self.id, 
+                                      last_activity.activity_date.to_s(:db)
+                                    ])
+    result = active_seek_requests_since_last_push.nil? ? Array.new : active_seek_requests_since_last_push
+    result
   end
   def active_seek_requests
     active_seek_requests = SeekRequest.find(:all,  :joins => "join seeks on seeks.id = seek_requests.seek_id", :conditions => "seeks.is_active = true and seek_requests.seeked_profile_id = #{self.id}")

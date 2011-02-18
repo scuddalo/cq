@@ -19,4 +19,18 @@ class Seek < ActiveRecord::Base
       errors.add(:owner, "already has an active seek") unless s.nil?
     end
   end
+  
+  def seek_responses_since_last_activity 
+    last_activity = PushActivity.find(:all, :order => "activity_date desc", :limit=> 1)
+    seek_responses_since_last_actvitity = SeekResponse.find(:all, 
+                      :joins => "join seeks on seeks.id = seek_responses.seek_id"
+                      :conditions => [
+                                       "seek_responses.seek_id = ? and seek_responses.updated_at > ?", 
+                                       self.id, 
+                                       last_activity.activity_date.to_s(:db)
+                                    ]
+                     )
+    result = seek_responses_since_last_actvitity.nil? ? Array.new : seek_responses_since_last_actvitity
+    result
+  end
 end

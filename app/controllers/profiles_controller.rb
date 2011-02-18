@@ -81,26 +81,9 @@ class ProfilesController < ApplicationController
   
   
   def number_of_unreads
-    unread_active_seek_req_count = 0
-    unread_seek_responses_for_active_seek = 0
-    requested_profile.active_seek_requests.each do |req| 
-      if !req.message.read
-        unread_active_seek_req_count += 1
-      end
-    end
-    
-    responses = requested_profile.active_seek.seek_responses unless requested_profile.active_seek.nil?    
-    unless responses.nil?
-      responses.each do |resp|
-        if !resp.message.nil? && !resp.message.read
-          unread_seek_responses_for_active_seek += 1
-        end
-    end
-  end
-    
-   render :xml => {
-      :unread_seek_requests => unread_active_seek_req_count,
-      :unread_seek_responses => unread_seek_responses_for_active_seek
+    render :xml => {
+      :unread_seek_requests => requested_profile.active_seek_requests_since_last_push.count,
+      :unread_seek_responses => requested_profile.active_seek.seek_responses_since_last_activity.count
     }.to_xml
   end
   
