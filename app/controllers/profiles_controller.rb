@@ -82,8 +82,8 @@ class ProfilesController < ApplicationController
   
   def number_of_unreads
     seek_req_count = requested_profile.active_seek_requests_since_last_push.count
-    seek_res_count = active_seek.nil? ? 0 : active_seek.seek_responses_since_last_activity.count
     active_seek = requested_profile.active_seek
+    seek_res_count = active_seek.nil? ? 0 : active_seek.seek_responses_since_last_activity.count
     PushActivity.update_last_activity_time()
     render :xml => {
       :unread_seek_requests => seek_req_count,
