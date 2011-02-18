@@ -22,6 +22,7 @@ class Seek < ActiveRecord::Base
   
   def seek_responses_since_last_activity 
     last_activity = PushActivity.find(:all, :order => "activity_date desc", :limit=> 1)
+    last_activity = last_activity.kind_of?(Array) ? last_activity.first : last_activity
     seek_responses_since_last_actvitity = SeekResponse.find(:all, 
                       :joins => "join seeks on seeks.id = seek_responses.seek_id",
                       :conditions => [
