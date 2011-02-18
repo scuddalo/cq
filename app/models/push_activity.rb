@@ -10,5 +10,6 @@ class PushActivity < ActiveRecord::Base
     if(!last_one.nil?) 
       last_one.activity_date = Time.now()
       last_one.save!
+    end
   end
 end
