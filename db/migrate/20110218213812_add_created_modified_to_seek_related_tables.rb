@@ -1,22 +1,13 @@
 class AddCreatedModifiedToSeekRelatedTables < ActiveRecord::Migration
   def self.up
-    change_table :seeks do |t|
-      t.datetime :created_at
-      t.datetime :updated_at
-    end
-    change_table :seek_requests do |t|
-      t.datetime :created_at
-      t.datetime :updated_at
-    end
-    change_table :seek_responses do |t|
-      t.datetime :created_at
-      t.datetime :updated_at
-    end
-    change_table :push_activities do |t|
-      t.datetime :created_at
-      t.datetime :updated_at
-    end
-    
+    add_column  :seeks, :created_at, :datetime
+    add_column :seeks, :updated_at, :datetime
+    add_column  :seek_requests, :created_at, :datetime
+    add_column :seek_requests, :updated_at, :datetime
+    add_column  :seek_responses, :created_at, :datetime
+    add_column :seek_responses, :updated_at, :datetime
+    add_column  :push_activities, :created_at, :datetime
+    add_column :push_activities, :updated_at, :datetime
   end
 
   def self.down
