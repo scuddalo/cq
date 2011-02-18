@@ -4,8 +4,6 @@ class AddActivity < ActiveRecord::Migration
       t.string :activity_type, :default => 'push'
       t.datetime :activity_date
     end
-    
-    PushActivity.create :activity_type => 'push', :activity_date => Time.now
   end
 
   def self.down
