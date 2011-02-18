@@ -84,7 +84,6 @@ class ProfilesController < ApplicationController
     active_seek = requested_profile.active_seek;
     render :xml => {
       :unread_seek_requests => requested_profile.active_seek_requests_since_last_push.count,
-      
       :unread_seek_responses => active_seek.nil? ? 0 : active_seek.seek_responses_since_last_activity.count
     }.to_xml
   end
