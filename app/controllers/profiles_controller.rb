@@ -98,7 +98,7 @@ class ProfilesController < ApplicationController
     end
   end
     
-    render :xml => {
+   render :xml => {
       :unread_seek_requests => unread_active_seek_req_count,
       :unread_seek_responses => unread_seek_responses_for_active_seek
     }.to_xml
