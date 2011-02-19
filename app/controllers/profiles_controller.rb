@@ -86,8 +86,8 @@ class ProfilesController < ApplicationController
     seek_res_count = active_seek.nil? ? 0 : active_seek.seek_responses_since_last_activity.count
     PushActivity.update_last_activity_time()
     render :xml => {
-      :unread_seek_requests => seek_req_count,
-      :unread_seek_responses => seek_res_count
+      :new_seek_requests => seek_req_count,
+      :new_seek_responses => seek_res_count
     }.to_xml
   end
   
