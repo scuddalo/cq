@@ -8,7 +8,7 @@ class PushActivity < ActiveRecord::Base
   def self.update_last_activity_time 
     last_one = PushActivity.last_activity
     if(!last_one.nil?) 
-      last_one.activity_date = Time.now()
+      last_one.activity_date = Time.now().to_s(:db)
       last_one.save!
     end
   end
