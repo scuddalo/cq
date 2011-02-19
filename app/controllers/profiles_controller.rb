@@ -60,11 +60,11 @@ class ProfilesController < ApplicationController
       #     builder.
       #     
       #   end
-        render :xml => requested_profile.active_seek_requests.to_xml(:include => {:seek => {:include => { :owner => {:include => [:user, :location]}, 
-                                                                                                          :message => {:only => [:content, :id]},
+        render :xml => requested_profile.active_seek_requests.to_xml(:include => {:seek => {:include => { :owner => {:include => [:user, :location]}
                                                                                                         }
                                                                                            },
-                                                                                  :seeked_profile => {:include => [:user, :location]} 
+                                                                                  :seeked_profile => {:include => [:user, :location]}, 
+                                                                                  :message => {:only => [:content, :id]},
                                                                                   },
                                                                       :methods => [:is_accepted]
                                                                     )
