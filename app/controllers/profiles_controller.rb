@@ -64,7 +64,7 @@ class ProfilesController < ApplicationController
                                                                                                         }
                                                                                            },
                                                                                   :seeked_profile => {:include => [:user, :location]}, 
-                                                                                  :message => {:only => [:content, :id]},
+                                                                                  :message => {:only => [:content, :id, :read]},
                                                                                   },
                                                                       :methods => [:is_accepted]
                                                                     )

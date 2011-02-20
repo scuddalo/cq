@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   attr_accessor :return_to_after_login_location
   
   def load_default_sidebar_widgets
-    print "hello loading default sidebar widgets"
+    # print "hello loading default sidebar widgets"
     if logged_in?
       sidebar_widget :location
       sidebar_widget :social
