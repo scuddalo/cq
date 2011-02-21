@@ -75,7 +75,7 @@ class Profile < ActiveRecord::Base
     if !should_ignore_last_activity_time
       last_activity = PushActivity.find(:all, :order => "activity_date desc", :limit=> 1)
       last_activity = last_activity.kind_of?(Array) ? last_activity.first : last_activity
-      active_seek_requests = SeekRequest.find(:all,  
+      requests = SeekRequest.find(:all,  
                        :joins => "join seeks on seeks.id = seek_requests.seek_id", 
                        :conditions => ["seeks.is_active = true 
                                         and seek_requests.seeked_profile_id = ? 
@@ -85,15 +85,22 @@ class Profile < ActiveRecord::Base
                                       ])
 
     else
-      active_seek_requests = SeekRequest.find(:all,  
-                       :joins => "join seeks on seeks.id = seek_requests.seek_id", 
-                       :conditions => ["seeks.is_active = true 
-                                        and seek_requests.seeked_profile_id = ? ", 
-                                        self.id
-                                      ])
+      requests = active_seek_requests()
     end
     
-    result = active_seek_requests.nil? ? Array.new : active_seek_requests    
+    result = requests.nil? ? Array.new : requests    
+    result
+  end
+  
+  def active_seek_requests_with_read_status(read_status)
+    req = SeekRequest.find(:all, 
+                           :joins => "join seeks on seeks.id = seek_requests.seek_id join messages on seek_requests.message_id = messages.id", 
+                           :conditions => ["seeks.is_active = true and seek_requests.seeked_profile_id = ? and messages.read = ?", 
+                                            self.id, 
+                                            read_status
+                                          ]
+                          )
+    result = req.nil? ? Array.new : req
     result
   end
   
@@ -107,7 +114,8 @@ class Profile < ActiveRecord::Base
         #     active_seek_requests << seek_request 
         #   end
         # end
-    active_seek_requests
+    result = active_seek_requests.nil? ? Array.new : active_seek_requests
+    result
   end
   
   def active_seek

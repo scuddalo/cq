@@ -87,6 +87,8 @@ class ProfilesController < ApplicationController
     all_seek_requests = requested_profile.active_seek_requests_since_last_push((ignore_last_activity_time == "1"))
     seek_req_count = all_seek_requests.count
     
+    unread_seek_requests = requested_profile.active_seek_requests_with_read_status(false)
+    
     # second, fetch all seek responses
     active_seek = requested_profile.active_seek
     all_seek_responses = active_seek.nil? ? Array.new : active_seek.seek_responses_since_last_activity((ignore_last_activity_time == "1"))
@@ -96,7 +98,8 @@ class ProfilesController < ApplicationController
     
     render :xml => {
       :new_seek_requests => seek_req_count,
-      :new_seek_responses => seek_res_count
+      :new_seek_responses => seek_res_count, 
+      :unread_seek_requests => unread_seek_requests.count
     }.to_xml
 
   end
