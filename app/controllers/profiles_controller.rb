@@ -84,12 +84,12 @@ class ProfilesController < ApplicationController
     ignore_last_activity_time = params[:ignoreLastActivity]
     puts "###############ignoreLastActivity: #{ignore_last_activity_time}"
     # first fetch all the seek requests 
-    all_seek_requests = requested_profile.active_seek_requests_since_last_push(ignore_last_activity_time == 1)
+    all_seek_requests = requested_profile.active_seek_requests_since_last_push((ignore_last_activity_time == 1))
     seek_req_count = all_seek_requests.count
     
     # second, fetch all seek responses
     active_seek = requested_profile.active_seek
-    all_seek_responses = active_seek.nil? ? Array.new : active_seek.seek_responses_since_last_activity(ignore_last_activity_time == 1)
+    all_seek_responses = active_seek.nil? ? Array.new : active_seek.seek_responses_since_last_activity((ignore_last_activity_time == 1))
     seek_res_count = all_seek_responses.nil? ? 0 : all_seek_responses.count
     
     PushActivity.update_last_activity_time()

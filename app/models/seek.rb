@@ -21,6 +21,7 @@ class Seek < ActiveRecord::Base
   end
   
   def seek_responses_since_last_activity(ignore_last_activity_time)
+    puts "###############ignore_last_activity_time: #{ignore_last_activity_time}"
     if !ignore_last_activity_time
       last_activity = PushActivity.find(:all, :order => "activity_date desc", :limit=> 1)
       last_activity = last_activity.kind_of?(Array) ? last_activity.first : last_activity
