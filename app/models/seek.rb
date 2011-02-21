@@ -47,4 +47,26 @@ class Seek < ActiveRecord::Base
     result = seek_responses.nil? ? Array.new : seek_responses
     result
   end
+  
+  def seek_responses
+    responses = SeekResponse.find(:all, 
+                      :joins => "join seeks on seeks.id = seek_responses.seek_id",
+                      :conditions => [
+                                       "seek_responses.seek_id = ? ", 
+                                       self.id
+                                    ]
+                     )
+    result = responses.nil? ? Array.new : responses
+    result
+  end
+  
+  def message_sent_out_as_request
+    requests = self.seek_requests
+    result = nil
+    unless requests.nil?
+      message = requests.first;
+      result = message
+    end
+    result
+  end
 end

@@ -74,7 +74,7 @@ class ProfilesController < ApplicationController
 
   def active_seek
     render :xml => requested_profile.active_seek.to_xml({:include => { :owner => {:include => [:user, :location]}, 
-                                                                       :message => {:only => [:content, :id]},
+                                                                       :seek_requests => {:include => [:message]}
                                                                      }
                                                         })
   end
