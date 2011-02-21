@@ -88,7 +88,7 @@ class ProfilesController < ApplicationController
     
     # second, fetch all seek responses
     active_seek = requested_profile.active_seek
-    all_seek_responses = active_seek.nil? ? 0 : active_seek.seek_responses_since_last_activity(ignore_last_activity_time)
+    all_seek_responses = active_seek.nil? ? Array.new : active_seek.seek_responses_since_last_activity(ignore_last_activity_time)
     seek_res_count = all_seek_responses.nil? ? 0 : all_seek_responses.count
     
     PushActivity.update_last_activity_time()
