@@ -73,10 +73,15 @@ class ProfilesController < ApplicationController
   end
 
   def active_seek
-    render :xml => requested_profile.active_seek.to_xml({:include => { :owner => {:include => [:user, :location]}, 
-                                                                       :seek_requests => {:include => [:message]}
-                                                                     }
-                                                        })
+    active_sk = requested_profile.active_seek
+    unless active_seek.nil?
+      render :xml => requested_profile.active_seek.to_xml({:include => { :owner => {:include => [:user, :location]}, 
+                                                                         :seek_requests => {:include => [:message]}
+                                                                       }
+                                                          })
+    else
+      render :xml => {:result => "No ative seek"}
+    end
   end
   
   
