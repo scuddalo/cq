@@ -81,6 +81,7 @@ class ProfilesController < ApplicationController
   
   
   def number_of_unreads
+    ignore_last_activity_time = params[:ignoreLastActivity]
     seek_req_count = requested_profile.active_seek_requests_since_last_push.count
     active_seek = requested_profile.active_seek
     seek_res_count = active_seek.nil? ? 0 : active_seek.seek_responses_since_last_activity.count

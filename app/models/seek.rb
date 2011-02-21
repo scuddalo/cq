@@ -20,18 +20,30 @@ class Seek < ActiveRecord::Base
     end
   end
   
-  def seek_responses_since_last_activity 
-    last_activity = PushActivity.find(:all, :order => "activity_date desc", :limit=> 1)
-    last_activity = last_activity.kind_of?(Array) ? last_activity.first : last_activity
-    seek_responses_since_last_actvitity = SeekResponse.find(:all, 
-                      :joins => "join seeks on seeks.id = seek_responses.seek_id",
-                      :conditions => [
-                                       "seek_responses.seek_id = ? and seek_responses.updated_at > ?", 
-                                       self.id, 
-                                       last_activity.activity_date.to_s(:db)
-                                    ]
-                     )
-    result = seek_responses_since_last_actvitity.nil? ? Array.new : seek_responses_since_last_actvitity
+  def seek_responses_since_last_activity(ignore_last_activity_time)
+    if ignore_last_activity_time
+      last_activity = PushActivity.find(:all, :order => "activity_date desc", :limit=> 1)
+      last_activity = last_activity.kind_of?(Array) ? last_activity.first : last_activity
+      seek_responses = SeekResponse.find(:all, 
+                        :joins => "join seeks on seeks.id = seek_responses.seek_id",
+                        :conditions => [
+                                         "seek_responses.seek_id = ? and seek_responses.updated_at > ?", 
+                                         self.id, 
+                                         last_activity.activity_date.to_s(:db)
+                                      ]
+                       )
+
+    else
+      seek_responses = SeekResponse.find(:all, 
+                        :joins => "join seeks on seeks.id = seek_responses.seek_id",
+                        :conditions => [
+                                         "seek_responses.seek_id = ? ", 
+                                         self.id
+                                      ]
+                       )
+        
+    end
+    result = seek_responses.nil? ? Array.new : seek_responses
     result
   end
 end

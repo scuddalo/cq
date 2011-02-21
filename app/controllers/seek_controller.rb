@@ -156,11 +156,6 @@ class SeekController < ApplicationController
     end
   end
   
-  def number_of_seeks
-    
-  end
-
-  
   def create_seek_response(seek_request_ids, message, accept)
     @seek_responses = Array.new
       for sid in seek_request_ids.split(",") do 

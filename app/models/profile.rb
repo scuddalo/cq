@@ -69,20 +69,32 @@ class Profile < ActiveRecord::Base
     photo.url(:thumb)
   end
   
-  def active_seek_requests_since_last_push
-    last_activity = PushActivity.find(:all, :order => "activity_date desc", :limit=> 1)
-    last_activity = last_activity.kind_of?(Array) ? last_activity.first : last_activity
-    active_seek_requests_since_last_push = SeekRequest.find(:all,  
-                     :joins => "join seeks on seeks.id = seek_requests.seek_id", 
-                     :conditions => ["seeks.is_active = true 
-                                      and seek_requests.seeked_profile_id = ? 
-                                      and seek_requests.updated_at > ? ", 
-                                      self.id, 
-                                      last_activity.activity_date.to_s(:db)
-                                    ])
-    result = active_seek_requests_since_last_push.nil? ? Array.new : active_seek_requests_since_last_push
+  def active_seek_requests_since_last_push(should_ignore_last_activity_time)
+    if should_ignore_last_activity_time
+      last_activity = PushActivity.find(:all, :order => "activity_date desc", :limit=> 1)
+      last_activity = last_activity.kind_of?(Array) ? last_activity.first : last_activity
+      active_seek_requests = SeekRequest.find(:all,  
+                       :joins => "join seeks on seeks.id = seek_requests.seek_id", 
+                       :conditions => ["seeks.is_active = true 
+                                        and seek_requests.seeked_profile_id = ? 
+                                        and seek_requests.updated_at > ? ", 
+                                        self.id, 
+                                        last_activity.activity_date.to_s(:db)
+                                      ])
+
+    else
+      active_seek_requests = SeekRequest.find(:all,  
+                       :joins => "join seeks on seeks.id = seek_requests.seek_id", 
+                       :conditions => ["seeks.is_active = true 
+                                        and seek_requests.seeked_profile_id = ? ", 
+                                        self.id
+                                      ])
+    end
+    
+    result = active_seek_requests.nil? ? Array.new : active_seek_requests    
     result
   end
+  
   def active_seek_requests
     active_seek_requests = SeekRequest.find(:all,  :joins => "join seeks on seeks.id = seek_requests.seek_id", :conditions => "seeks.is_active = true and seek_requests.seeked_profile_id = #{self.id}")
     # active_seek_requests = SeekRequest.find_by_sql('select * from seek_requests srq join seeks s on (s.id = srq.seek_id) join where s.is_Active=true and srq.seeked_profile_id = ' + self.id)
