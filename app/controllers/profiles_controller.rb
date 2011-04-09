@@ -42,6 +42,11 @@ class ProfilesController < ApplicationController
   def mark_offline
     requested_profile.offline = 1;
     requested_profile.save!
+    respond_to do |format|
+      format.xml {
+        head :ok
+      }
+    end
   end
   
   
