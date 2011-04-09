@@ -48,6 +48,11 @@ class ProfilesController < ApplicationController
   def mark_online
     requested_profile.offline = 0;
     requested_profile.save!
+    respond_to do |format|
+      format.xml {
+        head :ok
+      }
+    end
   end
 
   def update_status
