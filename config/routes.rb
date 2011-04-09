@@ -97,6 +97,8 @@ ActionController::Routing::Routes.draw do |map|
       n.connect 'people/:profile_id.:format', :action => 'update'
       n.connect 'people/:profile_id/upload_photo.:format', :action => 'upload_photo'
       n.connect 'people/:profile_id/update_status.:format', :action => 'update_status'
+      n.mark_offline 'people/:profile_id/offline.:format', :action => 'mark_offline'
+      n.mark_online 'people/:profile_id/online.:format', :action => 'mark_online'
     end
     
     m.post do |n|

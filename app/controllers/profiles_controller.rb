@@ -38,9 +38,20 @@ class ProfilesController < ApplicationController
                  }
     end
   end
+
+  def mark_offline
+    requested_profile.offline = 1;
+    requested_profile.save!
+  end
   
+  
+  def mark_online
+    requested_profile.offline = 0;
+    requested_profile.save!
+  end
+
   def update_status
-    if !params[:status].nil?
+    unless params[:status].nil?
       requested_profile.status = params[:status]
       requested_profile.save!  
        respond_to do |format|
@@ -135,7 +146,4 @@ class ProfilesController < ApplicationController
       flash['notice 2'] = 'Your password has been changed'
     end
   end
-  
-
-  
 end

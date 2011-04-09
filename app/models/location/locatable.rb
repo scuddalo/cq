@@ -45,7 +45,8 @@ module Location::Locatable
       if tier.nil? 
         result
       else
-        result.select {|p| self.following_in_tiers?(p, tier) }
+        result = result.select {|p| self.following_in_tiers?(p, tier) }
+        result = result.select {|p| !p.offline }
       end
     end
   
