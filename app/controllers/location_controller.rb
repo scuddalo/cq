@@ -81,9 +81,9 @@ class LocationController < ApplicationController
         format.xml  { 
           final_xml = ""
           final_profiles = distinguish_friends_and_strangers(@whos_around)
-          debugger
           final_profiles.each { |p| p.current_user_tier = requested_profile.which_tier(p) }
           final_profiles = final_profiles.select {|p| requested_profile.following?(p) }
+          final_profiles = final_profiles.select {|a| !a.offline}
           render :xml => final_profiles.to_xml(:include => [:location, :user], :methods => [:is_friends_with_current_profile, :distance_from_current_profile, :current_user_tier])
           #render :xml => @whos_around.to_xml(:include => [:location, :user]) 
         }
