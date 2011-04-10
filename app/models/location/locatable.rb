@@ -42,12 +42,11 @@ module Location::Locatable
 
       result = self.class.find(:all, :conditions => { :location_id => locations.map(&:id) })
       result.delete(self) unless include_self
-      if tier.nil? 
-        result
-      else
+      unless tier.nil?
         result = result.select {|p| self.following_in_tiers?(p, tier) }
-        result = result.select {|p| !p.offline }
       end
+      result = result.select {|p| !p.offline }
+      result
     end
   
     # Alias for +find_within+.
