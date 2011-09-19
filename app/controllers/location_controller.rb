@@ -74,7 +74,7 @@ class LocationController < ApplicationController
       flash[:notice] = "Please set your current location to see who's around"
       redirect_to :action => 'edit'
     else
-      @whos_around = requested_profile.find_nearby( { :include_self => false, :tier => params[:tier] })
+      @whos_around = requested_profile.find_nearby( { :include_self => false, :tier => params[:tier], :distance => 2700 })
       puts @whos_arround
       respond_to do |format|
         format.html # new.html.erb
