@@ -39,13 +39,17 @@ module Location::Locatable
       
       # want location to include itself regardless:
       locations = self.location.find_within(options.merge(:include_self => true))
-
+      puts "locations count => #{locations.size}; ===> #{locations}"
       result = self.class.find(:all, :conditions => { :location_id => locations.map(&:id) })
+      puts "all profiles that that are in the above locations => #{result}"
       result.delete(self) unless include_self
       unless tier.nil?
+        puts "tier was not null => #{tier}"
         result = result.select {|p| self.following_in_tiers?(p, tier) }
       end
+      puts "before offline filtering => #{result}"
       result = result.select {|p| !p.offline }
+      puts "final result of find_within => #{result}"
       result
     end
   
