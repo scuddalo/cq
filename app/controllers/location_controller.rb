@@ -53,8 +53,7 @@ class LocationController < ApplicationController
       respond_to do |format|
         format.html {redirect_to :action => 'whos_around'}
         format.xml { 
-          @whos_around = requested_profile.find_nearby(:include_self=>false, :distance => 10000)
-          puts @whos_around
+          @whos_around = requested_profile.find_nearby(:include_self=>false, :distance => 5400)
           final_profiles = distinguish_friends_and_strangers(@whos_around)
           final_profiles.each { |p| p.current_user_tier = requested_profile.which_tier(p) }
           final_profiles = final_profiles.select {|p| requested_profile.friends_with?(p) }

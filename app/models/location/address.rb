@@ -22,6 +22,7 @@ module Location
     def self.find_within(distance = nil, options = {})
       distance ||= Location::DEFAULT_DISTANCE
       origin = extract_origin_from_options(options)
+      puts "@@@@@@@#{origin}"
       result = find_within_bounds(GeoKit::Bounds.from_point_and_radius(origin, distance), options)
       result.sort_by_distance_from origin
     end
