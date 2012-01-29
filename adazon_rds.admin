@@ -1,0 +1,2 @@
+mysql -h cqdb.ctdvwphnc9fp.us-east-1.rds.amazonaws.com -P 3306 -u santoash -p
+santoash/asdasd
