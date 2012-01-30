@@ -39,6 +39,7 @@ class Profile < ActiveRecord::Base
   def initialize
     @friends_with_current_profile = false
     @distance=-1
+    super
   end 
   
 

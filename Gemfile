@@ -14,3 +14,8 @@ gem 'activerecord', '2.3.10'
 gem 'activeresource', '2.3.10'
 gem 'rmagick'
 gem 'heroku'
+
+group :development do
+  gem 'sqlite3'
+  gem 'ruby-debug'
+end
