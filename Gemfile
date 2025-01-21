@@ -2,16 +2,16 @@ source :rubygems
 source :rubyforge
 source :gemcutter
 
-gem 'rails', '2.3.10'
+gem 'rails', '8.0.1'
 gem 'rake'
 gem 'mysql', '2.7'
 gem 'pg'
 gem 'geokit' 
 gem 'mocha'
-gem 'activesupport', '2.3.10'
-gem 'actionmailer', '2.3.10'
-gem 'activerecord', '2.3.10'
-gem 'activeresource', '2.3.10'
+gem 'activesupport', '8.0.1'
+gem 'actionmailer', '8.0.1'
+gem 'activerecord', '8.0.1'
+gem 'activeresource', '6.1.4'
 gem 'rmagick'
 gem 'heroku'
 
